@@ -1,0 +1,131 @@
+@media screen and (min-width: 992px) {
+    .wpo-site-header #navbar > ul > li > a {
+        font-size: 16px !important;
+    }
+}
+
+.office-info-item{
+    height: 350px !important;
+}
+
+.wpo-site-header.s3 .navigation.sticky-header.sticky-on {
+    background-color: #fff !important;
+}
+
+.wpo-site-header #navbar > ul > li > a:hover:before, .wpo-site-header #navbar > ul > li > a.active:before {
+     opacity: 0 !important; 
+     visibility: hidden !important; 
+}
+
+.section-padding{
+    padding: 100px 0px !important;
+}
+
+.section-padding-services{
+    padding-top: 100px !important;
+    padding-bottom: 10px !important;
+}
+
+.project-card .content-porfolio {
+    position: absolute;
+    left: 20px;
+    bottom: 40px;
+    max-width: 450px;
+    width: 100%;
+    border-radius: 20px;
+    background: #000b47;
+    box-shadow: 0px 2px 8px 0px rgba(34, 31, 60, 0.1);
+    padding: 25px 30px;
+    transition: all 0.3s ease-in-out;
+}
+
+.content-porfolio a h3 {
+    color: white;
+}
+
+.cta-section{
+    margin-top: 70px !important;
+}
+
+.videos-section{
+    margin-top: 70px !important;
+}
+
+.wpo-page-title{
+    min-height: 250px !important;
+    padding-top: 0px !important;
+    margin-top: 100px !important;
+}
+
+.hero-slide{
+    margin-top: 100px !important;
+}
+
+@media screen and (min-width: 992px) {
+    .wpo-site-header.s3 #navbar > ul > li > a {
+        color: #2e3192 !important;
+    }
+}
+
+@media screen and (min-width: 992px) {
+  .wpo-site-header.s3 #navbar > ul > li > a {
+    color: #000B47 !important;
+  }
+  .wpo-site-header.s3 #navbar > ul li a:hover {
+    color: #f15a24 !important;
+  }
+  .wpo-site-header.s3 #navbar > ul > li > a:before {
+    background: #f15a24 !important;
+  }
+  .wpo-site-header.s3 #navbar > ul > li > a.active {
+    color: #f15a24 !important;
+  }
+  .wpo-site-header.s3 #navbar > ul > li .sub-menu a.active {
+    color: #f15a24 !important;
+  }
+  .wpo-site-header.s3 #navbar > ul > li .sub-menu a.active:after {
+    color: #f15a24 !important;
+  }
+  .wpo-site-header.s3 #navbar > ul > li .sub-menu a:after {
+    background: #f15a24 !important;
+  }
+}
+
+.wpo-site-header.s3 .header-right .call-number .text .title {
+    color: #000B47 !important;
+}
+
+.wpo-site-header.s3 .header-right .call-number .text .number {
+    color: #000B47 !important;
+}
+
+.wpo-site-header.s1 .header-right .call-number .text .number, .wpo-site-header.s3 .header-right .call-number .text .number {
+    font-size: 16px !important;
+    line-height: 0px !important; 
+}
+
+.wpo-site-header.s1 .header-right .call-number .text .title, .wpo-site-header.s3 .header-right .call-number .text .title {
+    font-size: 15px !important;
+    line-height: 30px !important;
+}
+
+.wpo-site-footer .link-widget ul li a:hover {
+  color: #f15a24 !important;
+}
+.wpo-site-footer .link-widget ul li a:hover::before {
+  background: #f15a24 !important;
+}
+
+.wpo-site-footer .social-widget ul li a:hover {
+  color: #f15a24 !important;
+}
+
+.wpo-site-footer .wpo-upper-footer {
+    padding: 70px 0px !important;
+}
+
+.theme-btn, .view-cart-btn {
+    padding: 10px 20px !important;
+    font-size: 20px !important;
+    line-height: 30px !important; 
+}

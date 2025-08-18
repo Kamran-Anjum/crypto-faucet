@@ -1,0 +1,138 @@
+/* 5. Home-style-2 */
+
+
+/*5.1 about-section-s2 */
+.about-section-s2 {
+
+    .about-left-content {
+        position: relative;
+
+        @media (max-width:1199px) {
+            max-width: 650px;
+            margin: 0 auto;
+            margin-bottom: 50px;
+        }
+
+        .image-1 {
+            max-width: 400px;
+            max-height: 650px;
+            position: relative;
+            left: -220px;
+            z-index: -1;
+
+            @media (max-width:1650px) {
+                left: -150px;
+            }
+
+            @media (max-width:1599px) {
+                left: -50px;
+            }
+
+            @media (max-width:1399px) {
+                left: 0px;
+            }
+
+            @media (max-width:767px) {
+                margin: 0 auto;
+            }
+
+            img {
+                border-radius: 25px;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .image-2 {
+            max-width: 500px;
+            max-height: 650px;
+            position: absolute;
+            right: 70px;
+            top: 0;
+            z-index: 1;
+
+            @media (max-width:1399px) {
+                right: 0px;
+            }
+
+            @media (max-width:767px) {
+                display: none;
+            }
+
+            img {
+                border-radius: 25px;
+                border-radius: 325px 200px 200px 325px;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}
+
+
+/*5.2 services-section-s2 */
+.services-section-s2 {
+    padding-top: 0;
+
+    .section-title {
+        h2 {
+            color: #000B47;
+        }
+    }
+
+}
+
+
+/*5.3 project-section-s2 */
+.project-section-s2 {
+    padding-bottom: 30px;
+    .section-title{
+        margin-bottom: 0;
+    }
+    .project-slider-s2 {
+        margin: 0 85px;
+
+        @media (max-width:1699px) {
+            margin: 0;
+        }
+    }
+
+    .project-card {
+        max-width: 100%;
+
+        @media (max-width:767px) {}
+
+        .image {
+            img {
+                height: 500px;
+
+                @media (max-width:1199px) {
+                    height: 400px;
+                }
+                @media (max-width:575px) {
+                    height: 300px;
+                }
+            }
+
+        }
+    }
+
+    .project-card {
+        .content {
+            @media (max-width:1499px) {
+                left: 0;
+            }
+
+            @media (max-width: 575px) {
+                transform:unset;
+            }
+        }
+
+    }
+
+
+}
+
+
+
+
