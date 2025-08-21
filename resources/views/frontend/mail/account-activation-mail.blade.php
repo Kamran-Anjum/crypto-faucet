@@ -37,10 +37,10 @@
     <div class="container">
         <p>Dear {{ $data['name'] }},</p>
 
-        <p>Click the button below to activate your <a href="https://cogentdevs.com" target="_blank">{{ $app_settings->app_name }}</a> account:</p>
+        <p>Click the button below to activate your <a href="https://faucet.cogentproducts.co" target="_blank">{{ $app_settings->app_name }}</a> account:</p>
 
         <a href="http://localhost:8000/account/activate/{{ $data['user_id'] }}/{{ $data['slug'] }}" class="button">Activate Account</a>
-        <!-- <a href="https://cogentdevs.com/account/activate/{{ $data['user_id'] }}/{{ $data['slug'] }}" class="button">Activate Account</a> -->
+        <!-- <a href="https://faucet.cogentproducts.co/account/activate/{{ $data['user_id'] }}/{{ $data['slug'] }}" class="button">Activate Account</a> -->
 
         <p class="footer">
             Regards,<br>

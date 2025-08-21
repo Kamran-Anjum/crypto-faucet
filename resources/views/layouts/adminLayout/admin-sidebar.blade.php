@@ -49,6 +49,13 @@
                 </li>
 
                 <li class="sidebar-item">
+                    <a href="{{ url('/admin/edit-referral-commision')}}" class="sidebar-link">
+                        <i class="mdi mdi-account-multiple"></i>
+                        <span class="hide-menu">Referral Commision</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
                     <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"  aria-expanded="false">
                         <i class="mdi mdi-folder"></i>
                         <span class="hide-menu">Home</span> 

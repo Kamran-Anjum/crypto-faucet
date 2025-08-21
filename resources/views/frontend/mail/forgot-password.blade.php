@@ -37,12 +37,12 @@
     <div class="container">
         <p>Dear {{ $data['name'] }},</p>
 
-        <p>We received a request to reset your password for your <a href="https://cogentdevs.com" style="color: #3498db; text-decoration: none;"><strong>{{ $app_settings->app_name }}</strong></a> account.</p>
+        <p>We received a request to reset your password for your <a href="https://faucet.cogentproducts.co" style="color: #3498db; text-decoration: none;"><strong>{{ $app_settings->app_name }}</strong></a> account.</p>
 
         <p>Click the button below to create your new password:</p>
 
         <a href="http://localhost:8000/reset-password/{{ $data['user_id'] }}-{{ bin2hex(random_bytes(10)) }}" style="background-color: #3498db; color: #ffffff; padding: 12px 25px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">Create New Password</a>
-        <!-- <a href="https://cogentdevs.com/reset-password/{{ $data['user_id'] }}-{{ bin2hex(random_bytes(10)) }}" style="background-color: #3498db; color: #ffffff; padding: 12px 25px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">Create New Password</a> -->
+        <!-- <a href="https://faucet.cogentproducts.co/reset-password/{{ $data['user_id'] }}-{{ bin2hex(random_bytes(10)) }}" style="background-color: #3498db; color: #ffffff; padding: 12px 25px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">Create New Password</a> -->
 
         <p>If you did not request a password reset, please ignore this email or contact support if you have concerns.</p>
 

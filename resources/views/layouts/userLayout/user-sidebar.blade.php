@@ -20,7 +20,15 @@
                             </a>
                         </li>
 
-                        <!-- daily updates -->
+                        <!-- referral -->
+                        <li class="sidebar-item">
+                            <a href="{{ url('/user/referral')}}" class="sidebar-link">
+                                <i class="mdi mdi-account-multiple"></i>
+                                <span class="hide-menu">Referrals</span>
+                            </a>
+                        </li>
+
+                        <!-- faucet -->
                         <li class="sidebar-item">
                             <a href="{{ url('/user/faucet')}}" class="sidebar-link">
                                 <i class="mdi mdi-clipboard-check"></i>

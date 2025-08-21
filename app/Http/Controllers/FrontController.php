@@ -17,10 +17,17 @@ use Validate;
 use Mail;
 use App\Mail\ContactMail;
 use App\Mail\FreeConsultationMail;
+use Session;
 
 class FrontController extends Controller
 {
-    public function index(){
+    public function index(Request $request, $ref_code = null){
+
+        $referralCode = $ref_code ?? $request->query('ref');
+
+        if ($referralCode) {
+            session(['referral_code' => $referralCode]);
+        }
 
         $about_main = DB::table('about_mains')->first();
 

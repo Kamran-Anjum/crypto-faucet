@@ -61,7 +61,7 @@ class AdminController extends Controller
         if (Auth::check()) {
             if (Auth::user()->hasrole('admin')) {
 
-                $count_users = User::whereNot(['id'=>1])->where(['isDeleted'=>0])->count();
+                $count_users = User::where('id', '!=', 1)->where(['isDeleted'=>0])->count();
                 $count_contact = Contact::where(['read_msg'=>0])->count();
                
                 return view('admin.dashboard')->with(compact('count_users', 'count_contact'));

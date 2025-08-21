@@ -77,6 +77,9 @@ Route::group(['middleware' => ['role:admin']], function () {
     // per day limit route
     Route::match(['get', 'post'], '/admin/edit-per-day-limit', [App\Http\Controllers\PerDayLimitController::class, 'editPerDayLimit']);
 
+    // referral commission route
+    Route::match(['get', 'post'], '/admin/edit-referral-commision', [App\Http\Controllers\ReferralController::class, 'editReferralPercentage']);
+
 });
 
 // ==============================
@@ -104,6 +107,9 @@ Route::group(['middleware' => ['role:user']], function () {
     // user reward claims
     Route::match(['get', 'post'], '/user/faucet', [App\Http\Controllers\UserRewardClaimController::class, 'userFaucet']);
 
+    // user referral
+    Route::get('/user/referral', [App\Http\Controllers\ReferralController::class, 'userReferrals']);
+
 });
 
 // ==============================
@@ -115,6 +121,7 @@ Route::group(['middleware' => ['role:user']], function () {
 // ==============================
 
 Route::get('/', [App\Http\Controllers\FrontController::class, 'index']);
+Route::get('/ref={ref_code}', [App\Http\Controllers\FrontController::class, 'index']);
 Route::get('/about', [App\Http\Controllers\FrontController::class, 'about']);
 Route::match(['get', 'post'],'/contact', [App\Http\Controllers\FrontController::class, 'contact']);
 Route::get('/terms-and-conditions', [App\Http\Controllers\FrontController::class, 'termsAndCondition']);

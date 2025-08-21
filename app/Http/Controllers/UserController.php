@@ -49,6 +49,7 @@ class UserController extends Controller
                 $user->name = $data['name'];
                 $user->email = $data['email'];
                 $user->password = bcrypt($data['password']);
+                $user->referral_code = bin2hex(random_bytes(10)).date('Ymdhis');
                 $checkuser = $user->save();
                 $user->assignRole('user');
 
@@ -158,10 +159,19 @@ class UserController extends Controller
 
             }else{
 
+                $referralCode = session('referral_code'); // get referral from session
+                $referrer = null;
+
+                if ($referralCode) {
+                    $referrer = User::where('referral_code', $referralCode)->first();
+                }
+
                 $user = new User();
                 $user->name = $data['name'];
                 $user->email = $data['email'];
                 $user->password = bcrypt($data['password']);
+                $user->referred_by = $referrer ? $referrer->id : null;
+                $user->referral_code = bin2hex(random_bytes(10)).date('Ymdhis');
                 $user->isActive = 0;
                 $checkuser = $user->save();
                 $user->assignRole('user');
@@ -181,6 +191,8 @@ class UserController extends Controller
                 );
 
                 Mail::to($data['email'])->send(new AcccountActivationMail($data_mail));
+
+                Session::flush();
 
                 return redirect('/signup')->with('flash_message_success','Singup Successfull. Activation Link Send To Your Email');
                 
@@ -249,7 +261,13 @@ class UserController extends Controller
 
         $user_detail = UserDetail::where(['user_id' => $user_id])->first();
 
-        return view('user.dashboard')->with(compact('user_info', 'user_detail'));
+        $reward = SetReward::first();
+
+        $old_total_reward = $user_detail->total_reward;
+
+        $cur_total = $old_total_reward/$reward->reward_on*$reward->reward_value;
+
+        return view('user.dashboard')->with(compact('user_info', 'user_detail', 'cur_total'));
 
     }
 
