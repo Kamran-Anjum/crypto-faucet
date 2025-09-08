@@ -27,6 +27,7 @@
                             <h2 class="mb-0 display-5"><i class="mdi mdi-link-variant text-primary"></i></h2>
                             <div class="ml-auto">
                                 <h2 class="mb-0 "><span class="font-normal" style="background-color: lightcyan;">http://localhost:8000/ref={{ $user_referral->referral_code }}</span></h2>
+                                <!-- <h2 class="mb-0 "><span class="font-normal" style="background-color: lightcyan;">https://faucet.cogentproducts.co/ref={{ $user_referral->referral_code }}</span></h2> -->
                             </div>
                         </div>
                     </div>

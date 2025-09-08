@@ -15,6 +15,7 @@ use App\Models\UserRewardCliam;
 use App\Models\PerDayLimit;
 use App\Models\ReferralCommisionPercentage;
 use App\Models\ReferralComission;
+use App\Models\RewardToken;
 use Validate;
 use Session;
 
@@ -29,6 +30,8 @@ class UserRewardClaimController extends Controller
 
         $cur_time = date('Y-m-d h:i:s');
         $timer_time = date('Y-m-d h:i:s', strtotime($cur_time . ' +'.$timer.' minutes'));
+
+        $reward_token = RewardToken::first();
 
         $reward = SetReward::first();
 
@@ -111,7 +114,7 @@ class UserRewardClaimController extends Controller
 
         // dd($reward_timer, $cur_time, $timer_time);
 
-        return view('user.faucet.faucet')->with(compact('timer', 'reward', 'reward_timer', 'cur_time', 'user_detail', 'per_day_limit', 'reward_count', 'cur_total'));
+        return view('user.faucet.faucet')->with(compact('timer', 'reward_token', 'reward_timer', 'cur_time', 'user_detail', 'per_day_limit', 'reward_count', 'cur_total'));
 
     }
 }

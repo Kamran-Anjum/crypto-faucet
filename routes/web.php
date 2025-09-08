@@ -8,16 +8,16 @@ use Illuminate\Support\Facades\Route;
 // =========Admin Routes=========
 // ==============================
 
-Route::match(['get', 'post'],'/admin', [App\Http\Controllers\AdminController::class, 'login'])->name('adminlogin');
+Route::match(['get', 'post'], '/admin', [App\Http\Controllers\AdminController::class, 'login'])->name('adminlogin');
 
-Route::match(['get', 'post'],'/admin/register', [App\Http\Controllers\AdminController::class, 'register'])->name('adminregister');
+Route::match(['get', 'post'], '/admin/register', [App\Http\Controllers\AdminController::class, 'register'])->name('adminregister');
 
 Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'index']);
 
 Route::group(['middleware' => ['role:admin']], function () {
 
     //change password
-    Route::match(['get', 'post'],'/admin/change-password', [App\Http\Controllers\AdminController::class, 'change_password']);
+    Route::match(['get', 'post'], '/admin/change-password', [App\Http\Controllers\AdminController::class, 'change_password']);
 
     //admin logout
     Route::get('/admin/logout', [App\Http\Controllers\AdminController::class, 'logout'])->name('adminlogout');
@@ -68,6 +68,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     // terms and conditions route
     Route::match(['get', 'post'], '/admin/edit-terms-and-conditions', [App\Http\Controllers\TermsAndConditionsController::class, 'editTermsAndCondition']);
 
+    // FAUCET SETUP
     // timer route
     Route::match(['get', 'post'], '/admin/edit-timer', [App\Http\Controllers\TimerController::class, 'editTimer']);
 
@@ -80,6 +81,22 @@ Route::group(['middleware' => ['role:admin']], function () {
     // referral commission route
     Route::match(['get', 'post'], '/admin/edit-referral-commision', [App\Http\Controllers\ReferralController::class, 'editReferralPercentage']);
 
+    // PTC SETUP
+    // exchange token limit route
+    Route::match(['get', 'post'], '/admin/edit-exchange-token-limit', [App\Http\Controllers\ExchangeTokenLimitController::class, 'editExchangeTokenLimit']);
+
+    // ptc duration route
+    Route::get('/admin/view-ptc-durations', [App\Http\Controllers\PTCDurationController::class, 'viewPtcDuration']);
+    Route::match(['get', 'post'], '/admin/add-ptc-duration', [App\Http\Controllers\PTCDurationController::class, 'addPtcDuration']);
+    Route::match(['get', 'post'], '/admin/edit-ptc-duration/{id}', [App\Http\Controllers\PTCDurationController::class, 'editPtcDuration']);
+    Route::get('/admin/delete-ptc-duration/{id}', [App\Http\Controllers\PTCDurationController::class, 'deletePtcDuration']);
+
+    // ptc intervals route
+    Route::get('/admin/view-ptc-intervals', [App\Http\Controllers\PTCIntervalController::class, 'viewPtcInterval']);
+    Route::match(['get', 'post'], '/admin/add-ptc-interval', [App\Http\Controllers\PTCIntervalController::class, 'addPtcInterval']);
+    Route::match(['get', 'post'], '/admin/edit-ptc-interval/{id}', [App\Http\Controllers\PTCIntervalController::class, 'editPtcInterval']);
+    Route::get('/admin/delete-ptc-interval/{id}', [App\Http\Controllers\PTCIntervalController::class, 'deletePtcInterval']);
+
 });
 
 // ==============================
@@ -90,8 +107,8 @@ Route::group(['middleware' => ['role:admin']], function () {
 // =========User Routes==========
 // ==============================
 
-Route::match(['get', 'post'],'/login', [App\Http\Controllers\UserController::class, 'userLogin']);
-Route::match(['get', 'post'],'/signup', [App\Http\Controllers\UserController::class, 'userSingup']);
+Route::match(['get', 'post'], '/login', [App\Http\Controllers\UserController::class, 'userLogin']);
+Route::match(['get', 'post'], '/signup', [App\Http\Controllers\UserController::class, 'userSingup']);
 Route::get('/account/activate/{id}/{slug}', [App\Http\Controllers\UserController::class, 'activateAccount']);
 
 // forgot password
@@ -110,6 +127,11 @@ Route::group(['middleware' => ['role:user']], function () {
     // user referral
     Route::get('/user/referral', [App\Http\Controllers\ReferralController::class, 'userReferrals']);
 
+    // user withdrawal
+    Route::match(['get', 'post'], 'user/withdrawal', [App\Http\Controllers\WithdrawalController::class, 'withdrawal']);
+
+    Route::get('/user/token-to-amount/{token}', [App\Http\Controllers\WithDrawalController::class, 'userTokenToWithdrawal']);
+
 });
 
 // ==============================
@@ -123,7 +145,7 @@ Route::group(['middleware' => ['role:user']], function () {
 Route::get('/', [App\Http\Controllers\FrontController::class, 'index']);
 Route::get('/ref={ref_code}', [App\Http\Controllers\FrontController::class, 'index']);
 Route::get('/about', [App\Http\Controllers\FrontController::class, 'about']);
-Route::match(['get', 'post'],'/contact', [App\Http\Controllers\FrontController::class, 'contact']);
+Route::match(['get', 'post'], '/contact', [App\Http\Controllers\FrontController::class, 'contact']);
 Route::get('/terms-and-conditions', [App\Http\Controllers\FrontController::class, 'termsAndCondition']);
 Route::get('/privacy-policy', [App\Http\Controllers\FrontController::class, 'privacyPolicy']);
 

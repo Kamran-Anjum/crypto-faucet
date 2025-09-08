@@ -35,6 +35,14 @@
                                 <span class="hide-menu">Faucet</span>
                             </a>
                         </li>
+
+                        <!-- withdrawal -->
+                        <li class="sidebar-item">
+                            <a href="{{ url('/user/withdrawal')}}" class="sidebar-link">
+                                <i class="mdi mdi-clipboard-check"></i>
+                                <span class="hide-menu">Withdrawal</span>
+                            </a>
+                        </li>
                         
                     </ul>
                 </nav>

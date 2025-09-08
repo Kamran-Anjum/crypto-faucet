@@ -285,4 +285,22 @@ $(document).ready(function(){
        
     }); 
 
+    $('#tokens').on('change keyup', function() { 
+
+       var token = $(this).val();
+       //alert(status_id);
+       $.ajax({
+            url: '/user/token-to-amount/'+token,
+            success: data => {
+
+                $("#amount").val('');
+                $('#amount').val(data);
+                console.log(data);
+            }
+
+        });
+       
+    });
+
 });
+

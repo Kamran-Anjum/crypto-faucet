@@ -28,24 +28,34 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="{{ url('/admin/edit-timer')}}" class="sidebar-link">
-                        <i class="mdi mdi-av-timer"></i>
-                        <span class="hide-menu">Timer</span>
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"  aria-expanded="false">
+                        <i class="mdi mdi-cash-usd"></i>
+                        <span class="hide-menu">Faucet Setup</span> 
+                        <span class="badge badge-inverse badge-pill ml-auto mr-3 font-medium px-2 py-1"></span>
                     </a>
-                </li>
+                    <ul aria-expanded="false" class="collapse  first-level">
 
-                <li class="sidebar-item">
-                    <a href="{{ url('/admin/edit-set-reward')}}" class="sidebar-link">
-                        <i class="mdi mdi-cash"></i>
-                        <span class="hide-menu">Set Reward</span>
-                    </a>
-                </li>
+                        <li class="sidebar-item">
+                            <a href="{{ url('/admin/edit-timer')}}" class="sidebar-link">
+                                <i class="mdi mdi-av-timer"></i>
+                                <span class="hide-menu">Timer</span>
+                            </a>
+                        </li>
 
-                <li class="sidebar-item">
-                    <a href="{{ url('/admin/edit-per-day-limit')}}" class="sidebar-link">
-                        <i class="mdi mdi-alert-circle-outline"></i>
-                        <span class="hide-menu">Per Day Limit</span>
-                    </a>
+                        <li class="sidebar-item">
+                            <a href="{{ url('/admin/edit-set-reward')}}" class="sidebar-link">
+                                <i class="mdi mdi-cash"></i>
+                                <span class="hide-menu">Set Reward</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="{{ url('/admin/edit-per-day-limit')}}" class="sidebar-link">
+                                <i class="mdi mdi-alert-circle-outline"></i>
+                                <span class="hide-menu">Per Day Limit</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="sidebar-item">
@@ -53,6 +63,37 @@
                         <i class="mdi mdi-account-multiple"></i>
                         <span class="hide-menu">Referral Commision</span>
                     </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"  aria-expanded="false">
+                        <i class="mdi mdi-cursor-default-outline"></i>
+                        <span class="hide-menu">PTC Setup</span> 
+                        <span class="badge badge-inverse badge-pill ml-auto mr-3 font-medium px-2 py-1"></span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse  first-level">
+
+                        <li class="sidebar-item">
+                            <a href="{{ url('/admin/edit-exchange-token-limit')}}" class="sidebar-link">
+                                <i class="mdi mdi-av-timer"></i>
+                                <span class="hide-menu">Exchange Tokens</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="{{ url('/admin/view-ptc-durations')}}" class="sidebar-link">
+                                <i class="mdi mdi-clock"></i>
+                                <span class="hide-menu">Durations</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="{{ url('/admin/view-ptc-intervals')}}" class="sidebar-link">
+                                <i class="mdi mdi-alert-circle-outline"></i>
+                                <span class="hide-menu">Intervals</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="sidebar-item">

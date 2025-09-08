@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2025 at 10:01 AM
+-- Generation Time: Sep 08, 2025 at 01:49 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -136,6 +136,26 @@ CREATE TABLE `contacts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exchange_token_limits`
+--
+
+CREATE TABLE `exchange_token_limits` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `exchange_token_limit` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `exchange_token_limits`
+--
+
+INSERT INTO `exchange_token_limits` (`id`, `exchange_token_limit`, `created_at`, `updated_at`) VALUES
+(1, 500, '2025-08-30 04:37:31', '2025-08-29 23:44:10');
 
 -- --------------------------------------------------------
 
@@ -287,7 +307,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (27, '2025_08_16_065821_create_user_reward_cliams_table', 14),
 (28, '2025_08_18_075148_create_per_day_limits_table', 15),
 (29, '2025_08_19_092243_create_referral_commision_percentages_table', 16),
-(30, '2025_08_21_073826_create_referral_comissions_table', 17);
+(30, '2025_08_21_073826_create_referral_comissions_table', 17),
+(32, '2025_08_22_063225_create_reward_tokens_table', 18),
+(33, '2025_08_22_063628_create_exchange_token_limits_table', 19),
+(34, '2025_08_22_064001_create_ptc_durations_table', 20),
+(35, '2025_08_22_064014_create_ptc_intervals_table', 20),
+(37, '2025_09_01_073127_create_withdrawals_table', 21);
 
 -- --------------------------------------------------------
 
@@ -418,6 +443,51 @@ INSERT INTO `privacy_policies` (`id`, `title`, `description`, `created_at`, `upd
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ptc_durations`
+--
+
+CREATE TABLE `ptc_durations` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `seconds` int(11) DEFAULT NULL,
+  `tokens_take_per_view` int(11) DEFAULT NULL,
+  `tokens_give_per_view` int(11) DEFAULT NULL,
+  `isActive` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ptc_durations`
+--
+
+INSERT INTO `ptc_durations` (`id`, `seconds`, `tokens_take_per_view`, `tokens_give_per_view`, `isActive`, `created_at`, `updated_at`) VALUES
+(1, 5, 50, 35, 1, '2025-08-31 23:55:48', '2025-09-01 00:04:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ptc_intervals`
+--
+
+CREATE TABLE `ptc_intervals` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `duration` int(11) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `isActive` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ptc_intervals`
+--
+
+INSERT INTO `ptc_intervals` (`id`, `duration`, `type`, `isActive`, `created_at`, `updated_at`) VALUES
+(1, 5, 'Hours', 1, '2025-09-01 01:08:27', '2025-09-01 01:11:04');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `referral_comissions`
 --
 
@@ -440,7 +510,8 @@ INSERT INTO `referral_comissions` (`id`, `referral_user_id`, `referred_by_user_i
 (3, 10, 7, 7, '2025-08-21 02:50:36', '2025-08-21 02:50:36'),
 (4, 10, 7, 7, '2025-08-21 02:50:36', '2025-08-21 02:50:36'),
 (5, 10, 7, 7, '2025-08-21 02:50:36', '2025-08-21 02:50:36'),
-(6, 10, 7, 7, '2025-08-21 02:50:36', '2025-08-21 02:50:36');
+(6, 10, 7, 7, '2025-08-21 02:50:36', '2025-08-21 02:50:36'),
+(7, 10, 7, 5, '2025-09-08 06:10:24', '2025-09-08 06:10:24');
 
 -- --------------------------------------------------------
 
@@ -461,6 +532,26 @@ CREATE TABLE `referral_commision_percentages` (
 
 INSERT INTO `referral_commision_percentages` (`id`, `referral_percentage`, `created_at`, `updated_at`) VALUES
 (1, 10, '2025-08-19 09:42:12', '2025-08-19 04:46:19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reward_tokens`
+--
+
+CREATE TABLE `reward_tokens` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokens` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `reward_tokens`
+--
+
+INSERT INTO `reward_tokens` (`id`, `tokens`, `created_at`, `updated_at`) VALUES
+(1, 50, '2025-08-22 06:35:07', '2025-08-22 06:35:07');
 
 -- --------------------------------------------------------
 
@@ -515,9 +606,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('67ttPJIUgJI8yVUZYQlMhzIWD9xOTjGeB32w7nbF', 7, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoib2E5YXFJYUhSSDA0aWo0ZWViR2FERmVOVjM5WTN3bm95VnhBTFNVUSI7czoxMjoiU3VwcG9ydF9Vc2VyIjtzOjk6IlVzZXJfMzU1NyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC91c2VyL2Rhc2hib2FyZCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjc7fQ==', 1755758935),
-('gqUFYJwdOq9PyJcxL022x3dHxeIGo78b2CW6rXoo', 7, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozNToiaHR0cDovL2xvY2FsaG9zdDo4MDAwL3VzZXIvcmVmZXJyYWwiO31zOjY6Il90b2tlbiI7czo0MDoiNDZZc2Z2YjNWOHNWS1Z2YzhIb3pCdXBxT3dOUVFYTDJKTlJ4SjJpcSI7czoxMjoiU3VwcG9ydF9Vc2VyIjtzOjk6IlVzZXJfNzA5MyI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Nzt9', 1755762980),
-('WsxRAYC9oAAUfxd2ZF7fvbPtp75IlSyNSPV1Njwb', 7, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiV01neGtmYkxzVVljaDJ1bVB2ZDVnMVVqR0U1cUdWd0ZyQjBGaHpXVCI7czoxMjoiU3VwcG9ydF9Vc2VyIjtzOjk6IlVzZXJfOTkwMiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC91c2VyL2ZhdWNldCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjc7fQ==', 1755757659);
+('0MIko8BjbnI2q65nfd3Wr8KYn4GjZfXBN0T3zGu9', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRnhIOXJwSDY3VmlWUll0cGVVbVAwc2hwT1V0cmRUQmdFaktEbG9saCI7czoxMjoiU3VwcG9ydF9Vc2VyIjtzOjk6IlVzZXJfMzE3MyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDM6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9hZG1pbi9lZGl0LXNldC1yZXdhcmQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1757328271),
+('SljVycngIDhJ8Qk2AagL0rSUHrtqFvZpDW46SQwm', 7, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoieFFjZlpoWGpxRTBmRU5VNXJ0SXdLVXRkY3EwaXNCcVRmWk1YN2JsWCI7czoxMjoiU3VwcG9ydF9Vc2VyIjtzOjk6IlVzZXJfNDIyNSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzc6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC91c2VyL3dpdGhkcmF3YWwiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo3O30=', 1757332004),
+('UBlGkI99jjnjQ0J7IdfAn3S8p2tfwFRN3QphjCAV', 10, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRzFIR3dWdTFDdHQ3MEVRZnBzRzQyZG9HdWVGUVFxRHpQU1ZFTFNwSCI7czoxMjoiU3VwcG9ydF9Vc2VyIjtzOjk6IlVzZXJfMjgzOCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC91c2VyL2Rhc2hib2FyZCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjEwO30=', 1757329836);
 
 -- --------------------------------------------------------
 
@@ -539,7 +630,7 @@ CREATE TABLE `set_rewards` (
 --
 
 INSERT INTO `set_rewards` (`id`, `reward_on`, `reward_value`, `currency`, `created_at`, `updated_at`) VALUES
-(1, 65, '0.0000001', 'BTC', '2025-08-16 06:13:48', '2025-08-16 01:30:21');
+(1, 50, '0.00000100', 'DOGE', '2025-08-16 06:13:48', '2025-09-08 05:44:30');
 
 -- --------------------------------------------------------
 
@@ -635,9 +726,9 @@ CREATE TABLE `user_details` (
 --
 
 INSERT INTO `user_details` (`id`, `user_id`, `total_reward`, `total_reward_value`, `currency`, `created_at`, `updated_at`) VALUES
-(1, 7, 562, 0.0000008, 'BTC', '2025-08-16 06:43:25', '2025-08-21 02:54:01'),
-(2, 8, 65, 0.0000001, 'BTC', '2025-08-18 04:22:02', '2025-08-18 04:23:22'),
-(4, 10, 390, 0.0000006, 'BTC', '2025-08-19 07:50:51', '2025-08-21 02:50:36');
+(1, 7, 167, 0.0000028, 'DOGE', '2025-08-16 06:43:25', '2025-09-08 06:43:27'),
+(2, 8, 65, 0.0000001, 'DOGE', '2025-08-18 04:22:02', '2025-08-18 04:23:22'),
+(4, 10, 440, 0.0000016, 'DOGE', '2025-08-19 07:50:51', '2025-09-08 06:10:24');
 
 -- --------------------------------------------------------
 
@@ -662,21 +753,70 @@ CREATE TABLE `user_reward_cliams` (
 --
 
 INSERT INTO `user_reward_cliams` (`id`, `user_id`, `get_reward`, `get_reward_value`, `currency`, `claim_on`, `next_claim_after`, `created_at`, `updated_at`) VALUES
-(1, 7, 65, 0.0000001, 'BTC', '2025-08-18 07:00:14', '2025-08-18 07:05:14', '2025-08-18 02:00:14', '2025-08-18 02:00:14'),
-(2, 7, 65, 0.0000001, 'BTC', '2025-08-18 07:05:53', '2025-08-18 07:10:53', '2025-08-18 02:05:53', '2025-08-18 02:05:53'),
-(3, 7, 65, 0.0000001, 'BTC', '2025-08-18 07:11:22', '2025-08-18 07:16:22', '2025-08-18 02:11:22', '2025-08-18 02:11:22'),
-(4, 7, 65, 0.0000001, 'BTC', '2025-08-18 09:12:46', '2025-08-18 09:17:46', '2025-08-18 04:12:46', '2025-08-18 04:12:46'),
-(5, 7, 65, 0.0000001, 'BTC', '2025-08-18 09:17:58', '2025-08-18 09:22:58', '2025-08-18 04:17:58', '2025-08-18 04:17:58'),
-(6, 8, 65, 0.0000001, 'BTC', '2025-08-18 09:23:21', '2025-08-18 09:28:21', '2025-08-18 04:23:21', '2025-08-18 04:23:21'),
-(7, 7, 65, 0.0000001, 'BTC', '2025-08-18 09:27:01', '2025-08-18 09:32:01', '2025-08-18 04:27:01', '2025-08-18 04:27:01'),
-(8, 7, 65, 0.0000001, 'BTC', '2025-08-21 06:27:39', '2025-08-21 06:32:39', '2025-08-21 01:27:39', '2025-08-21 01:27:39'),
-(9, 10, 65, 0.0000001, 'BTC', '2025-08-21 06:27:50', '2025-08-21 06:32:50', '2025-08-21 01:27:50', '2025-08-21 01:27:50'),
-(10, 10, 65, 0.0000001, 'BTC', '2025-08-21 07:18:06', '2025-08-21 07:23:06', '2025-08-21 02:18:06', '2025-08-21 02:18:06'),
-(11, 10, 65, 0.0000001, 'BTC', '2025-08-21 07:46:43', '2025-08-21 07:51:43', '2025-08-21 02:46:43', '2025-08-21 02:46:43'),
-(12, 10, 65, 0.0000001, 'BTC', '2025-08-21 07:47:21', '2025-08-21 07:52:21', '2025-08-21 02:47:21', '2025-08-21 02:47:21'),
-(13, 10, 65, 0.0000001, 'BTC', '2025-08-21 07:50:14', '2025-08-21 07:55:14', '2025-08-21 02:50:14', '2025-08-21 02:50:14'),
-(14, 10, 65, 0.0000001, 'BTC', '2025-08-21 07:50:36', '2025-08-21 07:55:36', '2025-08-21 02:50:36', '2025-08-21 02:50:36'),
-(15, 7, 65, 0.0000001, 'BTC', '2025-08-21 07:54:01', '2025-08-21 07:59:01', '2025-08-21 02:54:01', '2025-08-21 02:54:01');
+(1, 7, 65, 0.0000001, 'DOGE', '2025-08-18 07:00:14', '2025-08-18 07:05:14', '2025-08-18 02:00:14', '2025-08-18 02:00:14'),
+(2, 7, 65, 0.0000001, 'DOGE', '2025-08-18 07:05:53', '2025-08-18 07:10:53', '2025-08-18 02:05:53', '2025-08-18 02:05:53'),
+(3, 7, 65, 0.0000001, 'DOGE', '2025-08-18 07:11:22', '2025-08-18 07:16:22', '2025-08-18 02:11:22', '2025-08-18 02:11:22'),
+(4, 7, 65, 0.0000001, 'DOGE', '2025-08-18 09:12:46', '2025-08-18 09:17:46', '2025-08-18 04:12:46', '2025-08-18 04:12:46'),
+(5, 7, 65, 0.0000001, 'DOGE', '2025-08-18 09:17:58', '2025-08-18 09:22:58', '2025-08-18 04:17:58', '2025-08-18 04:17:58'),
+(6, 8, 65, 0.0000001, 'DOGE', '2025-08-18 09:23:21', '2025-08-18 09:28:21', '2025-08-18 04:23:21', '2025-08-18 04:23:21'),
+(7, 7, 65, 0.0000001, 'DOGE', '2025-08-18 09:27:01', '2025-08-18 09:32:01', '2025-08-18 04:27:01', '2025-08-18 04:27:01'),
+(8, 7, 65, 0.0000001, 'DOGE', '2025-08-21 06:27:39', '2025-08-21 06:32:39', '2025-08-21 01:27:39', '2025-08-21 01:27:39'),
+(9, 10, 65, 0.0000001, 'DOGE', '2025-08-21 06:27:50', '2025-08-21 06:32:50', '2025-08-21 01:27:50', '2025-08-21 01:27:50'),
+(10, 10, 65, 0.0000001, 'DOGE', '2025-08-21 07:18:06', '2025-08-21 07:23:06', '2025-08-21 02:18:06', '2025-08-21 02:18:06'),
+(11, 10, 65, 0.0000001, 'DOGE', '2025-08-21 07:46:43', '2025-08-21 07:51:43', '2025-08-21 02:46:43', '2025-08-21 02:46:43'),
+(12, 10, 65, 0.0000001, 'DOGE', '2025-08-21 07:47:21', '2025-08-21 07:52:21', '2025-08-21 02:47:21', '2025-08-21 02:47:21'),
+(13, 10, 65, 0.0000001, 'DOGE', '2025-08-21 07:50:14', '2025-08-21 07:55:14', '2025-08-21 02:50:14', '2025-08-21 02:50:14'),
+(14, 10, 65, 0.0000001, 'DOGE', '2025-08-21 07:50:36', '2025-08-21 07:55:36', '2025-08-21 02:50:36', '2025-08-21 02:50:36'),
+(15, 7, 65, 0.0000001, 'DOGE', '2025-08-21 07:54:01', '2025-08-21 07:59:01', '2025-08-21 02:54:01', '2025-08-21 02:54:01'),
+(16, 7, 50, 0.000001, 'DOGE', '2025-09-08 10:50:08', '2025-09-08 10:55:08', '2025-09-08 05:50:08', '2025-09-08 05:50:08'),
+(17, 7, 50, 0.000001, 'DOGE', '2025-09-08 11:03:10', '2025-09-08 11:08:10', '2025-09-08 06:03:10', '2025-09-08 06:03:10'),
+(18, 10, 50, 0.000001, 'DOGE', '2025-09-08 11:10:24', '2025-09-08 11:15:24', '2025-09-08 06:10:24', '2025-09-08 06:10:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `withdrawals`
+--
+
+CREATE TABLE `withdrawals` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `amount` decimal(18,8) NOT NULL,
+  `currency` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT 'pending',
+  `tx_id` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `withdrawals`
+--
+
+INSERT INTO `withdrawals` (`id`, `user_id`, `address`, `amount`, `currency`, `status`, `tx_id`, `created_at`, `updated_at`) VALUES
+(1, 7, 'muzammilken95@gmail.com', 0.00000086, 'BTC', 'failed', NULL, '2025-09-08 01:13:23', '2025-09-08 01:13:28'),
+(2, 7, 'muzammilken95@gmail.com', 0.00000086, 'BTC', 'failed', NULL, '2025-09-08 01:19:06', '2025-09-08 01:19:08'),
+(3, 7, 'muzammilken95@gmail.com', 0.00000086, 'BTC', 'failed', NULL, '2025-09-08 02:38:22', '2025-09-08 02:38:25'),
+(4, 7, 'muzammilken95@gmail.com', 0.00000086, 'BTC', 'failed', NULL, '2025-09-08 02:39:42', '2025-09-08 02:39:43'),
+(5, 7, 'muzammilken95@gmail.com', 0.00000086, 'BTC', 'failed', NULL, '2025-09-08 02:49:30', '2025-09-08 02:49:32'),
+(6, 7, 'muzammilken95@gmail.com', 0.00000086, 'BTC', 'failed', NULL, '2025-09-08 04:40:27', '2025-09-08 04:40:29'),
+(7, 7, 'muzammilken95@gmail.com', 0.00000086, 'DOGE', 'failed', NULL, '2025-09-08 04:49:45', '2025-09-08 04:49:47'),
+(8, 7, 'muzammilken95@gmail.com', 0.00000086, 'DOGE', 'failed', NULL, '2025-09-08 04:52:21', '2025-09-08 04:52:22'),
+(9, 7, 'muzammilken95@gmail.com', 0.00000086, 'DOGE', 'failed', NULL, '2025-09-08 04:53:46', '2025-09-08 04:53:47'),
+(10, 7, 'muzammilken95@gmail.com', 0.00000086, 'DOGE', 'failed', NULL, '2025-09-08 04:55:07', '2025-09-08 04:55:08'),
+(11, 7, 'muzammilken95@gmail.com', 0.01000000, 'DOGE', 'failed', NULL, '2025-09-08 05:06:26', '2025-09-08 05:06:28'),
+(12, 7, 'muzammilken95@gmail.com', 0.00010000, 'DOGE', 'failed', NULL, '2025-09-08 05:08:05', '2025-09-08 05:08:06'),
+(13, 7, 'muzammilken95@gmail.com', 0.00010000, 'DOGE', 'failed', NULL, '2025-09-08 05:12:06', '2025-09-08 05:12:07'),
+(14, 7, 'DPu5qQtg86LtV69qLquQw4EotvMkzf3t64', 1.00000000, 'DOGE', 'success', '6226425786', '2025-09-08 05:22:01', '2025-09-08 05:22:03'),
+(15, 7, 'DPu5qQtg86LtV69qLquQw4EotvMkzf3t64', 100.00000000, 'DOGE', 'success', '6226434421', '2025-09-08 05:28:20', '2025-09-08 05:28:21'),
+(16, 7, 'DPu5qQtg86LtV69qLquQw4EotvMkzf3t64', 0.00000100, 'DOGE', 'failed', NULL, '2025-09-08 05:33:12', '2025-09-08 05:33:13'),
+(17, 7, 'DPu5qQtg86LtV69qLquQw4EotvMkzf3t64', 0.00000100, 'DOGE', 'success', '6226444437', '2025-09-08 05:35:27', '2025-09-08 05:35:29'),
+(18, 7, 'DPu5qQtg86LtV69qLquQw4EotvMkzf3t64', 0.00000100, 'DOGE', 'success', '6226446748', '2025-09-08 05:37:10', '2025-09-08 05:37:12'),
+(19, 7, 'muzammilken95@gmail.com', 0.00000100, 'DOGE', 'success', '6226449356', '2025-09-08 05:39:04', '2025-09-08 05:39:05'),
+(20, 7, 'muzammilken95@gmail.com', 0.00001334, 'DOGE', 'failed', NULL, '2025-09-08 06:28:53', '2025-09-08 06:28:54'),
+(21, 7, 'muzammilken95@gmail.com', 999.00000000, 'DOGE', 'success', '6226536139', '2025-09-08 06:41:04', '2025-09-08 06:41:05'),
+(22, 7, 'muzammilken95@gmail.com', 999.00000000, 'DOGE', 'success', '6226539477', '2025-09-08 06:43:26', '2025-09-08 06:43:27');
 
 --
 -- Indexes for dumped tables
@@ -716,6 +856,12 @@ ALTER TABLE `cache_locks`
 -- Indexes for table `contacts`
 --
 ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `exchange_token_limits`
+--
+ALTER TABLE `exchange_token_limits`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -804,6 +950,18 @@ ALTER TABLE `privacy_policies`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `ptc_durations`
+--
+ALTER TABLE `ptc_durations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ptc_intervals`
+--
+ALTER TABLE `ptc_intervals`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `referral_comissions`
 --
 ALTER TABLE `referral_comissions`
@@ -813,6 +971,12 @@ ALTER TABLE `referral_comissions`
 -- Indexes for table `referral_commision_percentages`
 --
 ALTER TABLE `referral_commision_percentages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `reward_tokens`
+--
+ALTER TABLE `reward_tokens`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -875,6 +1039,12 @@ ALTER TABLE `user_reward_cliams`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `withdrawals`
+--
+ALTER TABLE `withdrawals`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -901,6 +1071,12 @@ ALTER TABLE `app_settings`
 --
 ALTER TABLE `contacts`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `exchange_token_limits`
+--
+ALTER TABLE `exchange_token_limits`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -930,7 +1106,7 @@ ALTER TABLE `meta_tags`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -957,15 +1133,33 @@ ALTER TABLE `privacy_policies`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `ptc_durations`
+--
+ALTER TABLE `ptc_durations`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `ptc_intervals`
+--
+ALTER TABLE `ptc_intervals`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `referral_comissions`
 --
 ALTER TABLE `referral_comissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `referral_commision_percentages`
 --
 ALTER TABLE `referral_commision_percentages`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `reward_tokens`
+--
+ALTER TABLE `reward_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -1008,7 +1202,13 @@ ALTER TABLE `user_details`
 -- AUTO_INCREMENT for table `user_reward_cliams`
 --
 ALTER TABLE `user_reward_cliams`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `withdrawals`
+--
+ALTER TABLE `withdrawals`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
