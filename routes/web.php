@@ -72,14 +72,28 @@ Route::group(['middleware' => ['role:admin']], function () {
     // timer route
     Route::match(['get', 'post'], '/admin/edit-timer', [App\Http\Controllers\TimerController::class, 'editTimer']);
 
-    // set reward route
-    Route::match(['get', 'post'], '/admin/edit-set-reward', [App\Http\Controllers\SetRewardController::class, 'editSetReward']);
-
     // per day limit route
     Route::match(['get', 'post'], '/admin/edit-per-day-limit', [App\Http\Controllers\PerDayLimitController::class, 'editPerDayLimit']);
 
+    // set reward/token route
+    Route::match(['get', 'post'], '/admin/edit-reward-tokens', [App\Http\Controllers\RewardTokenController::class, 'editRewardToken']);
+
+    // experiance on cliams route
+    Route::match(['get', 'post'], '/admin/edit-experiance-on-claim', [App\Http\Controllers\ExperianceOnClaimController::class, 'editExperianceOnClaim']);
+
+    // level bonus on experiance route
+    Route::match(['get', 'post'], '/admin/edit-level-bonus-on-experiance', [App\Http\Controllers\LevelBonusOnExperianceController::class, 'editLevelBonusOnExperiance']);
+
+    // currency route
+    Route::match(['get', 'post'], '/admin/currencies', [App\Http\Controllers\CurrencyController::class, 'addViewCurrency']);
+    Route::match(['get', 'post'], '/admin/edit-currency/{id}', [App\Http\Controllers\CurrencyController::class, 'editCurrency']);
+    Route::get('/admin/delete-currency/{id}', [App\Http\Controllers\CurrencyController::class, 'deleteCurrency']);
+
     // referral commission route
     Route::match(['get', 'post'], '/admin/edit-referral-commision', [App\Http\Controllers\ReferralController::class, 'editReferralPercentage']);
+
+    // user withdrawal list route
+    Route::match(['get', 'post'], '/admin/view-user-withdrawals', [App\Http\Controllers\WithdrawalController::class, 'viewWithdrawal']);
 
     // PTC SETUP
     // exchange token limit route

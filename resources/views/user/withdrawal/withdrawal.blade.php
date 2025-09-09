@@ -38,7 +38,7 @@
                     <div class="card-body">
                         <div class="alert alert-warning alert-block">
                             <h4><strong>Instructions</strong></h4>
-                            <p style="font-size: 16px">For FaucetPay withdrawal method. Please create a FaucetPay account <strong style="font-size: large"><a href="https://faucetpay.io/">here</a></strong> and use your email/username as Wallet</p>
+                            <p style="font-size: 16px">For FaucetPay withdrawal method. Please create a FaucetPay account <strong style="font-size: large"><a href="https://faucetpay.io/">here</a></strong> and use your email address as Wallet</p>
                         </div>
 
                         <form enctype="multipart/form-data" class="form-horizontal" method="post" action="{{ url('/user/withdrawal') }}" > 
@@ -87,7 +87,60 @@
                     </div>
                 </div>
 
+                <div class="material-card card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="zero_config" class="table table-striped border">
+                                <thead>
+                                    <tr>
+                                        <th>S No.</th>
+                                        <th>FaucetPay Address</th>
+                                        <th>Amount</th>
+                                        <th>Currency</th>
+                                        <th>Status</th>
+                                        <th>TX ID</th>
+                                        <th>Withdrawal On</th>
+                                        {{-- <th>Action</th> --}}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $i = 0; ?>
+                                    @foreach($withdrawals as $data)
+                                        <tr>
+                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $data->address }}</td>
+                                            <td>{{ $data->amount }}</td>
+                                            <td>{{ $data->currency }}</td>
+                                            <td>{{ $data->status }}</td>
+                                            <td>{{ $data->tx_id }}</td>
+                                            <td>{{ date('d M Y', strtotime($data->created_at)) }}</td>
+                                           
+                                            {{-- <td class="center"> --}}
+                                                {{-- <a href="{{ url('/admin/view-contact-message/'.$data->id)}}" class="btn btn-primary">View Full Message</a> --}}
+                                               {{-- <button type="button" class="btn waves-effect waves-light btn-danger"><a class="text-white sa-confirm-delete" param-id="{{$data->id}}" param-route="delete-contact-message" href="javascript:">Delete</a></button> --}}
+                                            {{-- </td> --}}
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>S No.</th>
+                                        <th>FaucetPay Address</th>
+                                        <th>Amount</th>
+                                        <th>Currency</th>
+                                        <th>Status</th>
+                                        <th>TX ID</th>
+                                        <th>Withdrawal On</th>
+                                        {{-- <th>Action</th> --}}
+                                    </tr>
+                                </tfoot>
+                            </table>
+                         </div>
+                    </div>
+                </div>
+
             </div>
+        </div>
     </div>
 </div>
 

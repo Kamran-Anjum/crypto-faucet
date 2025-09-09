@@ -12,6 +12,19 @@ use App\Services\FaucetPayService;
 
 class WithdrawalController extends Controller
 {
+    // show to admin
+    public function viewWithdrawal()
+    {
+
+        $withdrawals = DB::table('withdrawals as w')
+            ->join('users as u', 'w.user_id', '=', 'u.id')
+            ->select('w.*', 'u.name as userName')
+            ->orderBy('w.id', 'desc')
+            ->get();
+
+        return view('admin.withdrawal.view-withdrawal', compact('withdrawals'));
+
+    }
     // user withdrawal page
     public function withdrawal(Request $request, FaucetPayService $faucetPay)
     {
@@ -73,7 +86,7 @@ class WithdrawalController extends Controller
 
         $cur_total = $old_total_reward / $reward->reward_on * $reward->reward_value;
 
-        $withdrawals = Withdrawal::where(['user_id' => $user_id])->get();
+        $withdrawals = Withdrawal::where(['user_id' => $user_id])->orderBy('id', 'desc')->get();
 
         return view("user.withdrawal.withdrawal")->with(compact('user_detail', 'cur_total', 'withdrawals'));
 

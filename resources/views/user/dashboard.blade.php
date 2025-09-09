@@ -55,7 +55,7 @@
                         <div class="d-flex align-items-center mb-2 mt-4">
                             <h2 class="mb-0 display-5"><i class="mdi mdi-cash-multiple text-primary"></i></h2>
                             <div class="ml-auto">
-                                <h2 class="mb-0 display-6"><span class="font-normal">{{ rtrim(rtrim(sprintf('%.8F', $cur_total), '0'), '.') }} {{ $user_detail->currency }}</span></h2>
+                                <h2 class="mb-0 display-6"><span class="font-normal">{{ number_format($cur_total, 8, '.', '') }} {{ $user_detail->currency }}</span></h2>
                                 <!-- <h2 class="mb-0 display-6"><span class="font-normal">{{ rtrim(rtrim(sprintf('%.8F', $user_detail->total_reward_value), '0'), '.') }} {{ $user_detail->currency }}</span></h2> -->
                             </div>
                         </div>

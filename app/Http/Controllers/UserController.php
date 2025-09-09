@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
 use App\Models\UserDetail;
+use App\Models\Withdrawal;
 use App\Models\SetReward;
+use App\Models\RewardToken;
 use Validate;
 use Session;
 use Mail;
@@ -21,9 +23,27 @@ class UserController extends Controller
     // Admin function start here
     public function viewUser()
     {
-        $users = DB::table('users')->whereNot(['id' => 1, 'isDeleted' => 0])->orderBy('id', 'desc')->get();
+        $users = DB::table('user_details as ud')
+            ->join('users as u', 'ud.user_id', '=', 'u.id')
+            ->select('ud.*', 'u.name as userName', 'u.email as userEmail', 'u.isActive')
+            ->orderBy('ud.id', 'desc')
+            ->get();
 
         return view('admin.users.view-user')->with(compact('users'));
+    }
+
+    public function viewUserDetail($id)
+    {
+        $user = DB::table('user_details as ud')
+            ->join('users as u', 'ud.user_id', '=', 'u.id')
+            ->select('ud.*', 'u.name as userName', 'u.email as userEmail', 'u.isActive')
+            ->orderBy('ud.id', 'desc')
+            ->where(['u.id' => $id])
+            ->first();
+
+        $withdrawals = Withdrawal::where(['user_id' => $id])->orderBy('id', 'desc')->get();
+
+        return view('admin.users.view-user-details')->with(compact('user', 'withdrawals'));
     }
 
     public function addUser(Request $request)
@@ -54,11 +74,11 @@ class UserController extends Controller
                 $checkuser = $user->save();
                 $user->assignRole('user');
 
-                $get_currency = SetReward::first();
+                $get_reward_token = RewardToken::first();
 
                 $user_detail = new UserDetail();
                 $user_detail->user_id = $user->id;
-                $user_detail->currency = $get_currency->currency;
+                $user_detail->base_reward_token = $get_reward_token->tokens;
                 $user_detail->save();
 
                 return redirect('/admin/view-users')->with('flash_message_success', 'User Added Successfully!');
@@ -179,11 +199,11 @@ class UserController extends Controller
                 $checkuser = $user->save();
                 $user->assignRole('user');
 
-                $get_currency = SetReward::first();
+                $get_reward_token = RewardToken::first();
 
                 $user_detail = new UserDetail();
                 $user_detail->user_id = $user->id;
-                $user_detail->currency = $get_currency->currency;
+                $user_detail->base_reward_token = $get_reward_token->tokens;
                 $user_detail->save();
 
                 $data_mail = array(

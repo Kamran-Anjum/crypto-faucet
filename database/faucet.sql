@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 08, 2025 at 01:49 PM
+-- Generation Time: Sep 09, 2025 at 01:41 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -140,6 +140,28 @@ CREATE TABLE `contacts` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `currencies`
+--
+
+CREATE TABLE `currencies` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `currency` varchar(255) DEFAULT NULL,
+  `value` varchar(255) DEFAULT NULL,
+  `per_token` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `currencies`
+--
+
+INSERT INTO `currencies` (`id`, `currency`, `value`, `per_token`, `created_at`, `updated_at`) VALUES
+(1, 'DOGE', '0.00000100', 50, '2025-09-09 04:28:15', '2025-09-09 04:28:15');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `exchange_token_limits`
 --
 
@@ -156,6 +178,27 @@ CREATE TABLE `exchange_token_limits` (
 
 INSERT INTO `exchange_token_limits` (`id`, `exchange_token_limit`, `created_at`, `updated_at`) VALUES
 (1, 500, '2025-08-30 04:37:31', '2025-08-29 23:44:10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `experiance_on_claims`
+--
+
+CREATE TABLE `experiance_on_claims` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `claims` int(11) DEFAULT NULL,
+  `experiance` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `experiance_on_claims`
+--
+
+INSERT INTO `experiance_on_claims` (`id`, `claims`, `experiance`, `created_at`, `updated_at`) VALUES
+(1, 5, 1, '2025-09-09 06:22:40', '2025-09-09 01:32:30');
 
 -- --------------------------------------------------------
 
@@ -251,6 +294,28 @@ CREATE TABLE `job_batches` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `level_bonus_on_experiances`
+--
+
+CREATE TABLE `level_bonus_on_experiances` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `experiance` int(11) DEFAULT NULL,
+  `level` int(11) DEFAULT NULL,
+  `token_bonus` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `level_bonus_on_experiances`
+--
+
+INSERT INTO `level_bonus_on_experiances` (`id`, `experiance`, `level`, `token_bonus`, `created_at`, `updated_at`) VALUES
+(1, 5, 1, 5, '2025-09-09 06:53:59', '2025-09-09 01:54:42');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `meta_tags`
 --
 
@@ -312,7 +377,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (33, '2025_08_22_063628_create_exchange_token_limits_table', 19),
 (34, '2025_08_22_064001_create_ptc_durations_table', 20),
 (35, '2025_08_22_064014_create_ptc_intervals_table', 20),
-(37, '2025_09_01_073127_create_withdrawals_table', 21);
+(37, '2025_09_01_073127_create_withdrawals_table', 21),
+(38, '2025_09_09_061225_create_experiance_on_claims_table', 22),
+(39, '2025_09_09_063736_create_level_bonus_on_experiances_table', 23),
+(40, '2025_09_09_075841_create_currencies_table', 24);
 
 -- --------------------------------------------------------
 
@@ -352,7 +420,8 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (2, 'App\\Models\\User', 7),
 (2, 'App\\Models\\User', 8),
 (2, 'App\\Models\\User', 9),
-(2, 'App\\Models\\User', 10);
+(2, 'App\\Models\\User', 10),
+(2, 'App\\Models\\User', 11);
 
 -- --------------------------------------------------------
 
@@ -511,7 +580,8 @@ INSERT INTO `referral_comissions` (`id`, `referral_user_id`, `referred_by_user_i
 (4, 10, 7, 7, '2025-08-21 02:50:36', '2025-08-21 02:50:36'),
 (5, 10, 7, 7, '2025-08-21 02:50:36', '2025-08-21 02:50:36'),
 (6, 10, 7, 7, '2025-08-21 02:50:36', '2025-08-21 02:50:36'),
-(7, 10, 7, 5, '2025-09-08 06:10:24', '2025-09-08 06:10:24');
+(7, 10, 7, 5, '2025-09-08 06:10:24', '2025-09-08 06:10:24'),
+(8, 10, 7, 5, '2025-09-08 23:41:34', '2025-09-08 23:41:34');
 
 -- --------------------------------------------------------
 
@@ -551,7 +621,7 @@ CREATE TABLE `reward_tokens` (
 --
 
 INSERT INTO `reward_tokens` (`id`, `tokens`, `created_at`, `updated_at`) VALUES
-(1, 50, '2025-08-22 06:35:07', '2025-08-22 06:35:07');
+(1, 50, '2025-08-22 06:35:07', '2025-09-09 02:43:00');
 
 -- --------------------------------------------------------
 
@@ -606,9 +676,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('0MIko8BjbnI2q65nfd3Wr8KYn4GjZfXBN0T3zGu9', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRnhIOXJwSDY3VmlWUll0cGVVbVAwc2hwT1V0cmRUQmdFaktEbG9saCI7czoxMjoiU3VwcG9ydF9Vc2VyIjtzOjk6IlVzZXJfMzE3MyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDM6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9hZG1pbi9lZGl0LXNldC1yZXdhcmQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1757328271),
-('SljVycngIDhJ8Qk2AagL0rSUHrtqFvZpDW46SQwm', 7, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoieFFjZlpoWGpxRTBmRU5VNXJ0SXdLVXRkY3EwaXNCcVRmWk1YN2JsWCI7czoxMjoiU3VwcG9ydF9Vc2VyIjtzOjk6IlVzZXJfNDIyNSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzc6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC91c2VyL3dpdGhkcmF3YWwiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo3O30=', 1757332004),
-('UBlGkI99jjnjQ0J7IdfAn3S8p2tfwFRN3QphjCAV', 10, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRzFIR3dWdTFDdHQ3MEVRZnBzRzQyZG9HdWVGUVFxRHpQU1ZFTFNwSCI7czoxMjoiU3VwcG9ydF9Vc2VyIjtzOjk6IlVzZXJfMjgzOCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC91c2VyL2Rhc2hib2FyZCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjEwO30=', 1757329836);
+('MDiPrpQEKSHFReY2LnWo3BImnpjccF8zfSiGzdC2', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoiZmFYNGRMNzg1MUhFSnhJZ3lzdTlCeU9EQjhhNEh1TVhubVRmeHNVbCI7czoxMjoiU3VwcG9ydF9Vc2VyIjtzOjk6IlVzZXJfNTA4MCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjg6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9zaWdudXAiO319', 1757416753);
 
 -- --------------------------------------------------------
 
@@ -630,7 +698,7 @@ CREATE TABLE `set_rewards` (
 --
 
 INSERT INTO `set_rewards` (`id`, `reward_on`, `reward_value`, `currency`, `created_at`, `updated_at`) VALUES
-(1, 50, '0.00000100', 'DOGE', '2025-08-16 06:13:48', '2025-09-08 05:44:30');
+(1, 50, '0.00000100', 'DOGE', '2025-08-16 06:13:48', '2025-09-09 01:59:42');
 
 -- --------------------------------------------------------
 
@@ -703,7 +771,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `phone`, `email_verified_at`, `passw
 (1, 'Admin', 'admin@faucet.com', NULL, NULL, '$2y$12$jEVhjlgDbCb.mwnVga7pgOpUo/kFMYH5WbyggX6LzTM.om5Xqgm02', NULL, NULL, NULL, 1, 0, '2025-08-15 07:14:52', '2025-08-15 07:14:52'),
 (7, 'Muhammad Muzammil', 'muzammilken95@gmail.com', NULL, NULL, '$2y$12$64c6UEzHCqhDR2aN3uIiIOKNO.14A9YB86Inpywaq.L4ggi2KgMc2', NULL, NULL, 'e865d22d47d80695838320250815105400', 1, 0, '2025-08-15 05:54:00', '2025-08-15 08:08:31'),
 (8, 'Muhammad Hammad', 'hammadkhan@gmail.com', NULL, NULL, '$2y$12$zMv4dHK.mn7WIGtEpxvBqe1MnXdOekN7QshMUXP3HKdo5AD2VvCou', NULL, NULL, 'e865d22d47d80695838320250818092202', 1, 0, '2025-08-18 04:22:02', '2025-08-18 04:22:02'),
-(10, 'Muhammad Usama', 'usama@gmail.com', NULL, NULL, '$2y$12$NRf.uQAGZqPMlDBnURU/rOhM7TxFY0AKW/TFGslK5GDjIvu8K.zGG', NULL, 7, 'dce4e1585fd4e084effc20250819125051', 1, 0, '2025-08-19 07:50:51', '2025-08-19 07:50:51');
+(10, 'Muhammad Usama', 'usama@gmail.com', NULL, NULL, '$2y$12$NRf.uQAGZqPMlDBnURU/rOhM7TxFY0AKW/TFGslK5GDjIvu8K.zGG', NULL, 7, 'dce4e1585fd4e084effc20250819125051', 1, 0, '2025-08-19 07:50:51', '2025-08-19 07:50:51'),
+(11, 'Wasi Sajjad', 'wasi@gmail.com', NULL, NULL, '$2y$12$Io2sk689YjmF25SFmQ.3iu8lMokb9gT/kkgL730gum4ylJVzW8.gG', NULL, NULL, 'c7aeae961dab12e96b2b20250909111905', 0, 0, '2025-09-09 06:19:05', '2025-09-09 06:19:05');
 
 -- --------------------------------------------------------
 
@@ -714,9 +783,10 @@ INSERT INTO `users` (`id`, `name`, `email`, `phone`, `email_verified_at`, `passw
 CREATE TABLE `user_details` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` int(11) NOT NULL,
+  `base_reward_token` double DEFAULT NULL,
+  `experiance` int(11) NOT NULL DEFAULT 0,
+  `level` int(11) NOT NULL DEFAULT 0,
   `total_reward` int(20) NOT NULL DEFAULT 0,
-  `total_reward_value` double NOT NULL DEFAULT 0,
-  `currency` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -725,10 +795,11 @@ CREATE TABLE `user_details` (
 -- Dumping data for table `user_details`
 --
 
-INSERT INTO `user_details` (`id`, `user_id`, `total_reward`, `total_reward_value`, `currency`, `created_at`, `updated_at`) VALUES
-(1, 7, 167, 0.0000028, 'DOGE', '2025-08-16 06:43:25', '2025-09-08 06:43:27'),
-(2, 8, 65, 0.0000001, 'DOGE', '2025-08-18 04:22:02', '2025-08-18 04:23:22'),
-(4, 10, 440, 0.0000016, 'DOGE', '2025-08-19 07:50:51', '2025-09-08 06:10:24');
+INSERT INTO `user_details` (`id`, `user_id`, `base_reward_token`, `experiance`, `level`, `total_reward`, `created_at`, `updated_at`) VALUES
+(1, 7, 50, 0, 0, 220, '2025-08-16 06:43:25', '2025-09-08 23:41:34'),
+(2, 8, 50, 0, 0, 65, '2025-08-18 04:22:02', '2025-08-18 04:23:22'),
+(4, 10, 50, 0, 0, 500, '2025-08-19 07:50:51', '2025-09-08 23:41:34'),
+(5, 11, 50, 0, 0, 0, '2025-09-09 06:19:05', '2025-09-09 06:19:05');
 
 -- --------------------------------------------------------
 
@@ -740,8 +811,6 @@ CREATE TABLE `user_reward_cliams` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` int(11) NOT NULL,
   `get_reward` int(20) NOT NULL,
-  `get_reward_value` double NOT NULL,
-  `currency` varchar(255) NOT NULL,
   `claim_on` varchar(255) NOT NULL,
   `next_claim_after` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -752,25 +821,27 @@ CREATE TABLE `user_reward_cliams` (
 -- Dumping data for table `user_reward_cliams`
 --
 
-INSERT INTO `user_reward_cliams` (`id`, `user_id`, `get_reward`, `get_reward_value`, `currency`, `claim_on`, `next_claim_after`, `created_at`, `updated_at`) VALUES
-(1, 7, 65, 0.0000001, 'DOGE', '2025-08-18 07:00:14', '2025-08-18 07:05:14', '2025-08-18 02:00:14', '2025-08-18 02:00:14'),
-(2, 7, 65, 0.0000001, 'DOGE', '2025-08-18 07:05:53', '2025-08-18 07:10:53', '2025-08-18 02:05:53', '2025-08-18 02:05:53'),
-(3, 7, 65, 0.0000001, 'DOGE', '2025-08-18 07:11:22', '2025-08-18 07:16:22', '2025-08-18 02:11:22', '2025-08-18 02:11:22'),
-(4, 7, 65, 0.0000001, 'DOGE', '2025-08-18 09:12:46', '2025-08-18 09:17:46', '2025-08-18 04:12:46', '2025-08-18 04:12:46'),
-(5, 7, 65, 0.0000001, 'DOGE', '2025-08-18 09:17:58', '2025-08-18 09:22:58', '2025-08-18 04:17:58', '2025-08-18 04:17:58'),
-(6, 8, 65, 0.0000001, 'DOGE', '2025-08-18 09:23:21', '2025-08-18 09:28:21', '2025-08-18 04:23:21', '2025-08-18 04:23:21'),
-(7, 7, 65, 0.0000001, 'DOGE', '2025-08-18 09:27:01', '2025-08-18 09:32:01', '2025-08-18 04:27:01', '2025-08-18 04:27:01'),
-(8, 7, 65, 0.0000001, 'DOGE', '2025-08-21 06:27:39', '2025-08-21 06:32:39', '2025-08-21 01:27:39', '2025-08-21 01:27:39'),
-(9, 10, 65, 0.0000001, 'DOGE', '2025-08-21 06:27:50', '2025-08-21 06:32:50', '2025-08-21 01:27:50', '2025-08-21 01:27:50'),
-(10, 10, 65, 0.0000001, 'DOGE', '2025-08-21 07:18:06', '2025-08-21 07:23:06', '2025-08-21 02:18:06', '2025-08-21 02:18:06'),
-(11, 10, 65, 0.0000001, 'DOGE', '2025-08-21 07:46:43', '2025-08-21 07:51:43', '2025-08-21 02:46:43', '2025-08-21 02:46:43'),
-(12, 10, 65, 0.0000001, 'DOGE', '2025-08-21 07:47:21', '2025-08-21 07:52:21', '2025-08-21 02:47:21', '2025-08-21 02:47:21'),
-(13, 10, 65, 0.0000001, 'DOGE', '2025-08-21 07:50:14', '2025-08-21 07:55:14', '2025-08-21 02:50:14', '2025-08-21 02:50:14'),
-(14, 10, 65, 0.0000001, 'DOGE', '2025-08-21 07:50:36', '2025-08-21 07:55:36', '2025-08-21 02:50:36', '2025-08-21 02:50:36'),
-(15, 7, 65, 0.0000001, 'DOGE', '2025-08-21 07:54:01', '2025-08-21 07:59:01', '2025-08-21 02:54:01', '2025-08-21 02:54:01'),
-(16, 7, 50, 0.000001, 'DOGE', '2025-09-08 10:50:08', '2025-09-08 10:55:08', '2025-09-08 05:50:08', '2025-09-08 05:50:08'),
-(17, 7, 50, 0.000001, 'DOGE', '2025-09-08 11:03:10', '2025-09-08 11:08:10', '2025-09-08 06:03:10', '2025-09-08 06:03:10'),
-(18, 10, 50, 0.000001, 'DOGE', '2025-09-08 11:10:24', '2025-09-08 11:15:24', '2025-09-08 06:10:24', '2025-09-08 06:10:24');
+INSERT INTO `user_reward_cliams` (`id`, `user_id`, `get_reward`, `claim_on`, `next_claim_after`, `created_at`, `updated_at`) VALUES
+(1, 7, 65, '2025-08-18 07:00:14', '2025-08-18 07:05:14', '2025-08-18 02:00:14', '2025-08-18 02:00:14'),
+(2, 7, 65, '2025-08-18 07:05:53', '2025-08-18 07:10:53', '2025-08-18 02:05:53', '2025-08-18 02:05:53'),
+(3, 7, 65, '2025-08-18 07:11:22', '2025-08-18 07:16:22', '2025-08-18 02:11:22', '2025-08-18 02:11:22'),
+(4, 7, 65, '2025-08-18 09:12:46', '2025-08-18 09:17:46', '2025-08-18 04:12:46', '2025-08-18 04:12:46'),
+(5, 7, 65, '2025-08-18 09:17:58', '2025-08-18 09:22:58', '2025-08-18 04:17:58', '2025-08-18 04:17:58'),
+(6, 8, 65, '2025-08-18 09:23:21', '2025-08-18 09:28:21', '2025-08-18 04:23:21', '2025-08-18 04:23:21'),
+(7, 7, 65, '2025-08-18 09:27:01', '2025-08-18 09:32:01', '2025-08-18 04:27:01', '2025-08-18 04:27:01'),
+(8, 7, 65, '2025-08-21 06:27:39', '2025-08-21 06:32:39', '2025-08-21 01:27:39', '2025-08-21 01:27:39'),
+(9, 10, 65, '2025-08-21 06:27:50', '2025-08-21 06:32:50', '2025-08-21 01:27:50', '2025-08-21 01:27:50'),
+(10, 10, 65, '2025-08-21 07:18:06', '2025-08-21 07:23:06', '2025-08-21 02:18:06', '2025-08-21 02:18:06'),
+(11, 10, 65, '2025-08-21 07:46:43', '2025-08-21 07:51:43', '2025-08-21 02:46:43', '2025-08-21 02:46:43'),
+(12, 10, 65, '2025-08-21 07:47:21', '2025-08-21 07:52:21', '2025-08-21 02:47:21', '2025-08-21 02:47:21'),
+(13, 10, 65, '2025-08-21 07:50:14', '2025-08-21 07:55:14', '2025-08-21 02:50:14', '2025-08-21 02:50:14'),
+(14, 10, 65, '2025-08-21 07:50:36', '2025-08-21 07:55:36', '2025-08-21 02:50:36', '2025-08-21 02:50:36'),
+(15, 7, 65, '2025-08-21 07:54:01', '2025-08-21 07:59:01', '2025-08-21 02:54:01', '2025-08-21 02:54:01'),
+(16, 7, 50, '2025-09-08 10:50:08', '2025-09-08 10:55:08', '2025-09-08 05:50:08', '2025-09-08 05:50:08'),
+(17, 7, 50, '2025-09-08 11:03:10', '2025-09-08 11:08:10', '2025-09-08 06:03:10', '2025-09-08 06:03:10'),
+(18, 10, 50, '2025-09-08 11:10:24', '2025-09-08 11:15:24', '2025-09-08 06:10:24', '2025-09-08 06:10:24'),
+(19, 7, 50, '2025-09-09 04:40:08', '2025-09-09 04:45:08', '2025-09-08 23:40:08', '2025-09-08 23:40:08'),
+(20, 10, 50, '2025-09-09 04:41:34', '2025-09-09 04:46:34', '2025-09-08 23:41:34', '2025-09-08 23:41:34');
 
 -- --------------------------------------------------------
 
@@ -859,9 +930,21 @@ ALTER TABLE `contacts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `currencies`
+--
+ALTER TABLE `currencies`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `exchange_token_limits`
 --
 ALTER TABLE `exchange_token_limits`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `experiance_on_claims`
+--
+ALTER TABLE `experiance_on_claims`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -888,6 +971,12 @@ ALTER TABLE `jobs`
 -- Indexes for table `job_batches`
 --
 ALTER TABLE `job_batches`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `level_bonus_on_experiances`
+--
+ALTER TABLE `level_bonus_on_experiances`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1073,9 +1162,21 @@ ALTER TABLE `contacts`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `currencies`
+--
+ALTER TABLE `currencies`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `exchange_token_limits`
 --
 ALTER TABLE `exchange_token_limits`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `experiance_on_claims`
+--
+ALTER TABLE `experiance_on_claims`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -1097,6 +1198,12 @@ ALTER TABLE `jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `level_bonus_on_experiances`
+--
+ALTER TABLE `level_bonus_on_experiances`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `meta_tags`
 --
 ALTER TABLE `meta_tags`
@@ -1106,7 +1213,7 @@ ALTER TABLE `meta_tags`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -1148,7 +1255,7 @@ ALTER TABLE `ptc_intervals`
 -- AUTO_INCREMENT for table `referral_comissions`
 --
 ALTER TABLE `referral_comissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `referral_commision_percentages`
@@ -1190,19 +1297,19 @@ ALTER TABLE `timers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user_details`
 --
 ALTER TABLE `user_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user_reward_cliams`
 --
 ALTER TABLE `user_reward_cliams`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `withdrawals`

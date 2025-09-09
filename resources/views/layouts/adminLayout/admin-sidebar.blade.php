@@ -43,16 +43,37 @@
                         </li>
 
                         <li class="sidebar-item">
-                            <a href="{{ url('/admin/edit-set-reward')}}" class="sidebar-link">
-                                <i class="mdi mdi-cash"></i>
-                                <span class="hide-menu">Set Reward</span>
+                            <a href="{{ url('/admin/edit-per-day-limit')}}" class="sidebar-link">
+                                <i class="mdi mdi-alert-circle-outline"></i>
+                                <span class="hide-menu">Per Day Limit</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item">
-                            <a href="{{ url('/admin/edit-per-day-limit')}}" class="sidebar-link">
+                            <a href="{{ url('/admin/edit-reward-tokens')}}" class="sidebar-link">
+                                <i class="mdi mdi-cash"></i>
+                                <span class="hide-menu">Reward Tokens</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="{{ url('/admin/currencies')}}" class="sidebar-link">
+                                <i class="mdi mdi-cash"></i>
+                                <span class="hide-menu">Currencies</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="{{ url('/admin/edit-experiance-on-claim')}}" class="sidebar-link">
                                 <i class="mdi mdi-alert-circle-outline"></i>
-                                <span class="hide-menu">Per Day Limit</span>
+                                <span class="hide-menu">Experiance On Claim</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a href="{{ url('/admin/edit-level-bonus-on-experiance')}}" class="sidebar-link">
+                                <i class="mdi mdi-alert-circle-outline"></i>
+                                <span class="hide-menu">Level Bonus On Experiance</span>
                             </a>
                         </li>
                     </ul>
@@ -115,6 +136,20 @@
                 </li> 
 
                 <li class="sidebar-item">
+                    <a href="{{ url('/admin/view-users')}}" class="sidebar-link">
+                        <i class="mdi mdi-folder"></i>
+                        <span class="hide-menu">Users</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="{{ url('/admin/view-user-withdrawals')}}" class="sidebar-link">
+                        <i class="mdi mdi-folder"></i>
+                        <span class="hide-menu">User Withdrawals</span>
+                    </a>
+                </li>
+                
+                <li class="sidebar-item">
                     <a href="{{ url('/admin/view-about-us')}}" class="sidebar-link">
                         <i class="mdi mdi-folder"></i>
                         <span class="hide-menu">About Us</span>
@@ -125,13 +160,6 @@
                     <a href="{{ url('/admin/view-contact-messages')}}" class="sidebar-link">
                         <i class="mdi mdi-folder"></i>
                         <span class="hide-menu">Contact Message</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a href="{{ url('/admin/view-users')}}" class="sidebar-link">
-                        <i class="mdi mdi-folder"></i>
-                        <span class="hide-menu">Users</span>
                     </a>
                 </li>
 

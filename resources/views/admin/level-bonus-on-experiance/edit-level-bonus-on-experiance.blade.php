@@ -5,13 +5,13 @@
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-lg-4 col-md-4 col-xs-12 align-self-center">
-                <h5 class="font-medium text-uppercase mb-0">Edit Set Reward</h5>
+                <h5 class="font-medium text-uppercase mb-0">Edit Level Bonus On Experiance</h5>
             </div>
             <div class="col-lg-8 col-md-4 col-xs-12 align-self-center">
                 <nav aria-label="breadcrumb" class="mt-2 float-md-right float-left">
                     <ol class="breadcrumb mb-0 justify-content-end p-0">
                         <li class="breadcrumb-item"><a href="{{ url('admin/dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Edit Set Reward</li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit Level Bonus On Experiance</li>
                     </ol>
                 </nav>
             </div>
@@ -37,31 +37,33 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <form enctype="multipart/form-data" class="form-horizontal" method="post" action="{{ url('/admin/edit-set-reward') }}" > 
+                        <form enctype="multipart/form-data" class="form-horizontal" method="post" action="{{ url('/admin/edit-level-bonus-on-experiance') }}" > 
                             {{ csrf_field() }}
                             <div class="form-body">
-                                
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">Reward On</label>
-                                            <input type="text" name="reward_on" id="reward_on" class="form-control" placeholder="Reward On" required value="{{ $set_reward->reward_on }}">
+                                            <label class="control-label">Experiance</label>
+                                            <input type="number" name="experiance" id="experiance" class="form-control" required value="{{ $level_bonus_on_exp->experiance }}">
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">Reward Value</label>
-                                            <input type="text" name="reward_value" id="reward_value" class="form-control" placeholder="Reward Value" required value="{{ $set_reward->reward_value }}">
+                                            <label class="control-label">Level</label>
+                                            <input type="number" name="level" id="level" class="form-control" required value="{{ $level_bonus_on_exp->level }}">
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">Currency</label>
-                                            <input type="text" name="currency" id="currency" class="form-control" placeholder="Currency" required value="{{ $set_reward->currency }}">
+                                            <label class="control-label">Token Bonus %</label>
+                                            <input type="number" name="token_bonus" id="token_bonus" class="form-control" required value="{{ $level_bonus_on_exp->token_bonus }}">
                                         </div>
                                     </div>
                                 </div>

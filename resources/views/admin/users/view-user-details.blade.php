@@ -5,13 +5,13 @@
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-lg-4 col-md-4 col-xs-12 align-self-center">
-                <h5 class="font-medium text-uppercase mb-0">Parent Details</h5>
+                <h5 class="font-medium text-uppercase mb-0">User Details</h5>
             </div>
             <div class="col-lg-8 col-md-4 col-xs-12 align-self-center">
                 <nav aria-label="breadcrumb" class="mt-2 float-md-right float-left">
                     <ol class="breadcrumb mb-0 justify-content-end p-0">
                         <li class="breadcrumb-item"><a href="{{ url('admin/dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Parent Details</li>
+                        <li class="breadcrumb-item active" aria-current="page">User Details</li>
                     </ol>
                 </nav>
             </div>
@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="button-group">
-                    <a href="{{ url('admin/view-parents') }}"><button type="button" class="btn waves-effect waves-light btn-success">Back</button></a>
+                    <a href="{{ url('admin/view-users') }}"><button type="button" class="btn waves-effect waves-light btn-success">Back</button></a>
                 </div>
             </div>
         </div>
@@ -85,65 +85,35 @@
             <div class="col-sm-12 mb-3">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h4 class="d-flex align-items-center mb-3">Parent Details</h4>
+                        <h4 class="d-flex align-items-center mb-3">User Details</h4>
                         <hr>
                         <div class="row">
-                            <div class="col-sm-2">
-                                <h6 class="mb-0">Family Code</h6>
-                            </div>
-                            <div class="col-sm-4 text-secondary">
-                                {{ $parent->family_code }}-{{ $parent->family_no }}
-                            </div>
                             <div class="col-sm-2">
                                 <h6 class="mb-0">Name</h6>
                             </div>
                             <div class="col-sm-4 text-secondary">
-                                {{ $parent->name }} 
+                                {{ $user->userName }}
                             </div>
-                        </div>
-                        <hr>
-                        <div class="row">
                             <div class="col-sm-2">
                                 <h6 class="mb-0">Email</h6>
                             </div>
                             <div class="col-sm-4 text-secondary">
-                                {{ $parent->email }} 
-                            </div>
-                            <div class="col-sm-2">
-                                <h6 class="mb-0">Relation</h6>
-                            </div>
-                            <div class="col-sm-4 text-secondary">
-                                {{ $parent->relation }}
+                                {{ $user->userEmail }} 
                             </div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-sm-2">
-                                <h6 class="mb-0">Mobile</h6>
+                                <h6 class="mb-0">Reg. on</h6>
                             </div>
                             <div class="col-sm-4 text-secondary">
-                                {{ $parent->mobile }}
-                            </div>                  
-                            <div class="col-sm-2">
-                                <h6 class="mb-0">Emergancy Number</h6>
-                            </div>
-                            <div class="col-sm-4 text-secondary">
-                                {{ $parent->emergancy_number }}
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <h6 class="mb-0">CNIC</h6>
-                            </div>
-                            <div class="col-sm-4 text-secondary">
-                                {{ $parent->cnic }}
+                                {{ date('j M Y', strtotime($user->created_at)) }} 
                             </div>
                             <div class="col-sm-2">
                                 <h6 class="mb-0">Status</h6>
                             </div>
                             <div class="col-sm-4 text-secondary">
-                                @if($parent->isActive == 1)
+                                @if($user->isActive == 1)
                                     Active
                                 @else
                                     Deactive
@@ -153,10 +123,35 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-2">
-                                <h6 class="mb-0">Address</h6>
+                                <h6 class="mb-0">Experiance</h6>
                             </div>
                             <div class="col-sm-4 text-secondary">
-                                {{ $parent->address }}
+                                {{ $user->experiance }}
+                            </div>                  
+                            <div class="col-sm-2">
+                                <h6 class="mb-0">:Level</h6>
+                            </div>
+                            <div class="col-sm-4 text-secondary">
+                                {{ $user->level }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <h6 class="mb-0">Tokens per Claim</h6>
+                            </div>
+                            <div class="col-sm-4 text-secondary">
+                                {{ $user->base_reward_token }}
+                            </div>
+                            <div class="col-sm-2">
+                                <h6 class="mb-0">Status</h6>
+                            </div>
+                            <div class="col-sm-4 text-secondary">
+                                @if($user->isActive == 1)
+                                    Active
+                                @else
+                                    Deactive
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -168,58 +163,48 @@
             <div class="col-12">
                 <div class="material-card card">
                     <div class="card-body">
+                        <h4 class="d-flex align-items-center mb-3">Withdrawal Details</h4>
+                        <hr>
                         <div class="table-responsive">
                             <table id="zero_config" class="table table-striped border">
                                 <thead>
                                     <tr>
                                         <th>S No.</th>
-                                        <th>Reg. No.</th>
-                                        <th>Class</th>
-                                        <th>Name</th>
-                                        <th>Image</th>
+                                        <th>FaucetPay Address</th>
+                                        <th>Amount</th>
+                                        <th>Currency</th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <th>TX ID</th>
+                                        <th>Withdrawal On</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 0; ?>
-                                    @foreach($students as $student)
-                                        <tr class="gradeX">
+                                    @foreach($withdrawals as $data)
+                                        <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $student->full_reg_no }}</td>
-                                            <td>{{ $student->class_name }} <br> ({{ $student->session_name }})</td>
-                                            <td>{{ $student->name }}</td>
-                                            <td>
-                                                <img src=" {{ asset('images/backend-images/student/'.$student->image ) }}" width="50">
-                                            </td>
-                                            <td>
-                                                @if($student->isActive == 1)
-                                                    Active
-                                                @else
-                                                    Deactive
-                                                @endif
-                                            </td>
-                                            <td class="center">
-                                                <a href="{{ url('/admin/view-student-detail/'.$student->id ) }}" class="btn btn-info btn-mini">View Details</a>
-                                                <a href="{{ url('/admin/edit-student/'.$student->id ) }}" class="btn btn-primary btn-mini">Edit</a>
-                                                 <button type="button" class="btn waves-effect waves-light btn-danger"><a class="text-white sa-confirm-delete" param-id="{{ $student->user_id }}" param-route="delete-student" href="javascript:">Delete</a></button>
-                                            </td>
+                                            <td>{{ $data->address }}</td>
+                                            <td>{{ $data->amount }}</td>
+                                            <td>{{ $data->currency }}</td>
+                                            <td>{{ $data->status }}</td>
+                                            <td>{{ $data->tx_id }}</td>
+                                            <td>{{ date('d M Y', strtotime($data->created_at)) }}</td>                               
                                         </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>S No.</th>
-                                        <th>Reg. No.</th>
-                                        <th>Class</th>
-                                        <th>Name</th>
-                                        <th>Image</th>
+                                        <th>FaucetPay Address</th>
+                                        <th>Amount</th>
+                                        <th>Currency</th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <th>TX ID</th>
+                                        <th>Withdrawal On</th>
                                     </tr>
                                 </tfoot>
                             </table>
-                        </div>
+                         </div>
                     </div>
                 </div>
             </div>

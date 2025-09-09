@@ -51,6 +51,9 @@
                                         <th>S No.</th>
                                         <th>Name</th>
                                         <th>Email</th>
+                                        <th>Experiance</th>
+                                        <th>Level</th>
+                                        <th>Tokens Per Claim</th>
                                         <th>Reg. On</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -61,8 +64,11 @@
                                     @foreach($users as $user)
                                         <tr class="gradeX">
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $user->userName }}</td>
+                                            <td>{{ $user->userEmail }}</td>
+                                            <td>{{ $user->experiance }}</td>
+                                            <td>{{ $user->level }}</td>
+                                            <td>{{ $user->base_reward_token }}</td>
                                             <td>{{ date('j M Y', strtotime($user->created_at)) }}</td>
                                             <td>
                                                 @if($user->isActive == 1)
@@ -72,12 +78,12 @@
                                                 @endif
                                             </td>
                                             <td class="center">
-                                                <!-- <a href="{{ url('/admin/view-user-detail/'.$user->id ) }}" class="btn btn-info btn-mini">View Details</a> -->
-                                                <a href="{{ url('/admin/edit-user/'.$user->id ) }}" class="btn btn-primary btn-mini">Edit</a>
+                                                <a href="{{ url('/admin/view-user/'.$user->user_id ) }}" class="btn btn-info btn-mini">View Details</a>
+                                                <a href="{{ url('/admin/edit-user/'.$user->user_id ) }}" class="btn btn-primary btn-mini">Edit</a>
 
                                                     <!-- <button type="button" class="btn waves-effect waves-light btn-danger"><a class="text-white sa-confirm-delete" param-id="{{ $user->id }}" param-route="delete-user" href="javascript:">Delete</a></button> -->
                                                
-                                                    <button type="button" class="btn waves-effect waves-light btn-danger"><a class="text-white sa-warning-delete" param-name="{{$user->name}}" href="javascript:">Remove</a></button>
+                                                    <button type="button" class="btn waves-effect waves-light btn-danger"><a class="text-white sa-warning-delete" param-name="{{$user->userName}}" href="javascript:">Remove</a></button>
                                                
 
                                             </td>
@@ -89,6 +95,9 @@
                                         <th>S No.</th>
                                         <th>Name</th>
                                         <th>Email</th>
+                                        <th>Experiance</th>
+                                        <th>Level</th>
+                                        <th>Tokens Per Claim</th>
                                         <th>Reg. On</th>
                                         <th>Status</th>
                                         <th>Action</th>
