@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 09, 2025 at 01:41 PM
+-- Generation Time: Sep 12, 2025 at 01:40 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -198,7 +198,7 @@ CREATE TABLE `experiance_on_claims` (
 --
 
 INSERT INTO `experiance_on_claims` (`id`, `claims`, `experiance`, `created_at`, `updated_at`) VALUES
-(1, 5, 1, '2025-09-09 06:22:40', '2025-09-09 01:32:30');
+(1, 2, 1, '2025-09-09 06:22:40', '2025-09-09 01:32:30');
 
 -- --------------------------------------------------------
 
@@ -581,7 +581,10 @@ INSERT INTO `referral_comissions` (`id`, `referral_user_id`, `referred_by_user_i
 (5, 10, 7, 7, '2025-08-21 02:50:36', '2025-08-21 02:50:36'),
 (6, 10, 7, 7, '2025-08-21 02:50:36', '2025-08-21 02:50:36'),
 (7, 10, 7, 5, '2025-09-08 06:10:24', '2025-09-08 06:10:24'),
-(8, 10, 7, 5, '2025-09-08 23:41:34', '2025-09-08 23:41:34');
+(8, 10, 7, 5, '2025-09-08 23:41:34', '2025-09-08 23:41:34'),
+(9, 10, 7, 5, '2025-09-12 06:19:38', '2025-09-12 06:19:38'),
+(10, 10, 7, 5, '2025-09-12 06:25:07', '2025-09-12 06:25:07'),
+(11, 10, 7, 5, '2025-09-12 06:33:16', '2025-09-12 06:33:16');
 
 -- --------------------------------------------------------
 
@@ -676,7 +679,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('MDiPrpQEKSHFReY2LnWo3BImnpjccF8zfSiGzdC2', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoiZmFYNGRMNzg1MUhFSnhJZ3lzdTlCeU9EQjhhNEh1TVhubVRmeHNVbCI7czoxMjoiU3VwcG9ydF9Vc2VyIjtzOjk6IlVzZXJfNTA4MCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjg6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9zaWdudXAiO319', 1757416753);
+('2z3xiBWmScPgdKCqZGOgXiV5QwJeNmmfOAnKvlhT', 7, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiNDNmRTNNTEtiR2xYdHBoTlBuSHRpd3pYVWhYTHVLeGNhMVoxb2RFdyI7czoxMjoiU3VwcG9ydF9Vc2VyIjtzOjk6IlVzZXJfMjYwMiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC91c2VyL2Rhc2hib2FyZCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjc7fQ==', 1757677060),
+('307cgykOQaFNFKEeGDKlxQqsyQGFeIbCUt9XJnKn', 10, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiSlhKWVFNMEhjTm5aeTF0VnVFMlBDTnN4cFRFV1dFWGpJQmpQblMzZiI7czoxMjoiU3VwcG9ydF9Vc2VyIjtzOjk6IlVzZXJfODE2NyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC91c2VyL2ZhdWNldCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjEwO30=', 1757676796);
 
 -- --------------------------------------------------------
 
@@ -796,9 +800,9 @@ CREATE TABLE `user_details` (
 --
 
 INSERT INTO `user_details` (`id`, `user_id`, `base_reward_token`, `experiance`, `level`, `total_reward`, `created_at`, `updated_at`) VALUES
-(1, 7, 50, 0, 0, 220, '2025-08-16 06:43:25', '2025-09-08 23:41:34'),
+(1, 7, 52, 7, 1, 441, '2025-08-16 06:43:25', '2025-09-12 06:33:16'),
 (2, 8, 50, 0, 0, 65, '2025-08-18 04:22:02', '2025-08-18 04:23:22'),
-(4, 10, 50, 0, 0, 500, '2025-08-19 07:50:51', '2025-09-08 23:41:34'),
+(4, 10, 52, 5, 1, 650, '2025-08-19 07:50:51', '2025-09-12 06:33:16'),
 (5, 11, 50, 0, 0, 0, '2025-09-09 06:19:05', '2025-09-09 06:19:05');
 
 -- --------------------------------------------------------
@@ -841,7 +845,14 @@ INSERT INTO `user_reward_cliams` (`id`, `user_id`, `get_reward`, `claim_on`, `ne
 (17, 7, 50, '2025-09-08 11:03:10', '2025-09-08 11:08:10', '2025-09-08 06:03:10', '2025-09-08 06:03:10'),
 (18, 10, 50, '2025-09-08 11:10:24', '2025-09-08 11:15:24', '2025-09-08 06:10:24', '2025-09-08 06:10:24'),
 (19, 7, 50, '2025-09-09 04:40:08', '2025-09-09 04:45:08', '2025-09-08 23:40:08', '2025-09-08 23:40:08'),
-(20, 10, 50, '2025-09-09 04:41:34', '2025-09-09 04:46:34', '2025-09-08 23:41:34', '2025-09-08 23:41:34');
+(20, 10, 50, '2025-09-09 04:41:34', '2025-09-09 04:46:34', '2025-09-08 23:41:34', '2025-09-08 23:41:34'),
+(21, 7, 50, '2025-09-12 11:13:22', '2025-09-12 11:18:22', '2025-09-12 06:13:22', '2025-09-12 06:13:22'),
+(22, 10, 50, '2025-09-12 11:19:38', '2025-09-12 11:24:38', '2025-09-12 06:19:38', '2025-09-12 06:19:38'),
+(23, 7, 52, '2025-09-12 11:20:55', '2025-09-12 11:25:55', '2025-09-12 06:20:55', '2025-09-12 06:20:55'),
+(24, 10, 50, '2025-09-12 11:25:07', '2025-09-12 11:30:07', '2025-09-12 06:25:07', '2025-09-12 06:25:07'),
+(25, 7, 52, '2025-09-12 11:26:31', '2025-09-12 11:31:31', '2025-09-12 06:26:31', '2025-09-12 06:26:31'),
+(26, 7, 52, '2025-09-12 11:33:11', '2025-09-12 11:38:11', '2025-09-12 06:33:11', '2025-09-12 06:33:11'),
+(27, 10, 50, '2025-09-12 11:33:16', '2025-09-12 11:38:16', '2025-09-12 06:33:16', '2025-09-12 06:33:16');
 
 -- --------------------------------------------------------
 
@@ -1255,7 +1266,7 @@ ALTER TABLE `ptc_intervals`
 -- AUTO_INCREMENT for table `referral_comissions`
 --
 ALTER TABLE `referral_comissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `referral_commision_percentages`
@@ -1309,7 +1320,7 @@ ALTER TABLE `user_details`
 -- AUTO_INCREMENT for table `user_reward_cliams`
 --
 ALTER TABLE `user_reward_cliams`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `withdrawals`

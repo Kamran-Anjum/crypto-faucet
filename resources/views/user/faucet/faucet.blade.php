@@ -19,23 +19,20 @@
     </div>
     <div class="page-content container-fluid">
         <div class="row justify-content-center">
-            <div class="col-md-4 col-lg-4">
+            <div class="col-md-6 col-lg-6">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title text-uppercase">Your Total {{ $user_detail->currency }}</h5>
+                        <h5 class="card-title text-uppercase">Your Total {{ $currency->currency }}</h5>
                         <div class="d-flex align-items-center mb-2 mt-4">
                             <h2 class="mb-0 display-5"><i class="mdi mdi-cash-multiple text-primary"></i></h2>
                             <div class="ml-auto">
-                                <h2 class="mb-0 display-6"><span class="font-normal">{{ number_format($cur_total, 8, '.', '') }} {{ $user_detail->currency }}</span></h2>
-                                <!-- <h2 class="mb-0 display-6"><span class="font-normal">{{ rtrim(rtrim(sprintf('%.8F', $user_detail->total_reward_value), '0'), '.') }} {{ $user_detail->currency }}</span></h2> -->
+                                <h2 class="mb-0 display-6"><span class="font-normal">{{ number_format($cur_total, 8, '.', '') }} {{ $currency->currency }}</span></h2>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 col-lg-4">
+            <div class="col-md-6 col-lg-6">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title text-uppercase">Claim Your Reward</h5>
@@ -68,20 +65,48 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-lg-4">
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-lg-3">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title text-uppercase">Get Reward</h5>
                         <div class="d-flex align-items-center mb-2 mt-4">
-                            <h2 class="mb-0 display-5"><i class="mdi mdi-cash-multiple text-primary"></i></h2>
+                            <h2 class="mb-0 display-5"><i class="mdi mdi-coins text-primary"></i></h2>
                             <div class="ml-auto">
-                                <h2 class="mb-0 display-6"><span class="font-normal">{{ $reward_token->tokens }} Tokens</span></h2>
+                                <h2 class="mb-0 display-7"><span class="font-normal">{{ $user_detail->base_reward_token }} Tokens</span></h2>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-lg-4">
+            <div class="col-md-3 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-uppercase">Experiance</h5>
+                        <div class="d-flex align-items-center mb-2 mt-4">
+                            <h2 class="mb-0 display-5"><i class="mdi mdi-briefcase text-primary"></i></h2>
+                            <div class="ml-auto">
+                                <h2 class="mb-0 display-6"><span class="font-normal">{{ $user_detail->experiance }}</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-uppercase">Level</h5>
+                        <div class="d-flex align-items-center mb-2 mt-4">
+                            <h2 class="mb-0 display-5"><i class="mdi mdi-chart-line text-primary"></i></h2>
+                            <div class="ml-auto">
+                                <h2 class="mb-0 display-6"><span class="font-normal">{{ $user_detail->level }}</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-3">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title text-uppercase">Per Day Calims</h5>

@@ -51,7 +51,7 @@
             <div class="col-md-6 col-lg-6">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title text-uppercase">Your Total {{ $user_detail->currency }}</h5>
+                        <h5 class="card-title text-uppercase">Your Total {{ $currency->currency }}</h5>
                         <div class="d-flex align-items-center mb-2 mt-4">
                             <h2 class="mb-0 display-5"><i class="mdi mdi-cash-multiple text-primary"></i></h2>
                             <div class="ml-auto">

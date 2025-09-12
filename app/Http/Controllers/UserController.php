@@ -12,6 +12,7 @@ use App\Models\UserDetail;
 use App\Models\Withdrawal;
 use App\Models\SetReward;
 use App\Models\RewardToken;
+use App\Models\Currency;
 use Validate;
 use Session;
 use Mail;
@@ -262,7 +263,7 @@ class UserController extends Controller
 
             } elseif (Auth::attempt(['email' => $data['email'], 'password' => $data['password'], 'isActive' => 0, 'isDeleted' => 0])) {
 
-                return redirect('/login')->with('flash_message_error', 'Your Account is Deactive By Admin');
+                return redirect('/login')->with('flash_message_error', 'Your Account Is Not Active');
 
             } else {
 
@@ -287,13 +288,14 @@ class UserController extends Controller
 
         $user_detail = UserDetail::where(['user_id' => $user_id])->first();
 
-        $reward = SetReward::first();
+        // $reward = SetReward::first();
+        $currency = Currency::first();
 
         $old_total_reward = $user_detail->total_reward;
 
-        $cur_total = $old_total_reward / $reward->reward_on * $reward->reward_value;
+        $cur_total = $old_total_reward / $currency->per_token * $currency->value;
 
-        return view('user.dashboard')->with(compact('user_info', 'user_detail', 'cur_total'));
+        return view('user.dashboard')->with(compact('user_info', 'user_detail', 'cur_total', 'currency'));
 
     }
 
